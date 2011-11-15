@@ -1,3 +1,6 @@
+php_value "short_open_tag" "on"
+
+SetEnv APPLICATION_ENV development
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -s [OR]

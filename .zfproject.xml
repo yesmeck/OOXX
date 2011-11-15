@@ -12,9 +12,19 @@
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="Topic">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="new"/>
+        </controllerFile>
       </controllersDirectory>
-      <formsDirectory enabled="false"/>
-      <layoutsDirectory enabled="false"/>
+      <formsDirectory>
+        <formFile formName="Topic"/>
+      </formsDirectory>
+      <layoutsDirectory>
+        <layoutScriptsDirectory>
+          <layoutScriptFile layoutName="layout"/>
+        </layoutScriptsDirectory>
+      </layoutsDirectory>
       <modelsDirectory/>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
@@ -24,6 +34,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Topic">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Topic">
+            <viewScriptFile forActionName="new"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -61,6 +77,10 @@
         <testApplicationControllerDirectory>
           <testApplicationControllerFile forControllerName="Index">
             <testApplicationActionMethod forActionName="index"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Topic">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="new"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
