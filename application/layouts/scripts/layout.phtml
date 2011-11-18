@@ -31,9 +31,13 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <form action="" class="pull-right">
-                        <input class="input-small" type="text" placeholder="Username">
-                        <input class="input-small" type="password" placeholder="Password">
-                        <button class="btn" type="submit">Sign in</button>
+                        <input class="input-small" type="text" placeholder="用户名">
+                        <input class="input-small" type="password" placeholder="密码">
+                        <button class="btn" type="submit">登录</button>
+                        <span><a href="<?php echo $this->url(array(
+                            'controller' => 'user',
+                            'action'     => 'register',
+                        ));?>">注册</a></span>
                     </form>
                 </div>
             </div>

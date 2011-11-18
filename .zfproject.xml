@@ -16,9 +16,15 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="new"/>
         </controllerFile>
+        <controllerFile controllerName="User">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="register"/>
+          <actionMethod actionName="login"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Topic"/>
+        <formFile formName="UserRegister"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -40,6 +46,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Topic">
             <viewScriptFile forActionName="new"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="register"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="login"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -81,6 +96,11 @@
           <testApplicationControllerFile forControllerName="Topic">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="new"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="User">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="register"/>
+            <testApplicationActionMethod forActionName="login"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
