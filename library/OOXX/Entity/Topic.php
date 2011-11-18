@@ -3,7 +3,7 @@
 namespace OOXX\Entity;
 
 /**
- * @Entity(repositoryClass="OOXX\Entity\Repository\StandRepository")
+ * @Entity(repositoryClass="OOXX\Entity\Repository\TopicRepository") @Table(name="topic")
  */
 class Topic
 {
