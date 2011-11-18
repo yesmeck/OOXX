@@ -14,13 +14,16 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
+$configFile = ('production' == APPLICATION_ENV) 
+    ? 'application.ini' : 'application.dev.ini';
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 
 // Create application, bootstrap, and run
 $application = new Zend_Application(
     APPLICATION_ENV,
-    APPLICATION_PATH . '/configs/application.ini'
+    APPLICATION_PATH . '/configs/' . $configFile
 );
 $application->bootstrap()
             ->run();
