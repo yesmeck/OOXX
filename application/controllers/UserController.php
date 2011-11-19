@@ -16,6 +16,22 @@ class UserController extends Zend_Controller_Action
         $this->_userModel = new Application_Model_User;
         $this->_authService = new Application_Service_Authentication;
     }
+    
+    
+    public function getResourceId()
+    {
+        return 'User';
+    }
+    
+    public function setAcl(OOXX_Acl_Interface $acl)
+    {
+        if (!$acl->has($this->getResourceId())) {
+            $acl->add($this)
+                ->allow('Guest', $this, array('register'));
+        }
+        $this->_acl = $acl;
+        return $this;
+    }
 
     public function indexAction()
     {

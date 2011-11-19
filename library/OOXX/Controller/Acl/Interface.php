@@ -1,6 +1,6 @@
 <?php
 
-interface OOXX_Model_Acl_Interface
+interface OOXX_Controller_Acl_Interface
 {
     public function setIdentity($identity);
     
@@ -12,4 +12,3 @@ interface OOXX_Model_Acl_Interface
     
     public function checkAcl($action);
 }
-?>

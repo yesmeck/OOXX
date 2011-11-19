@@ -1,7 +1,7 @@
 <?php
 
-abstract class OOXX_Model_Acl_Abstract extends OOXX_Model_Abstract
-    implements OOXX_Model_Acl_Interface, Zend_Acl_Resource_Interface
+abstract class OOXX_Controller_Acl_Abstract extends Zend_Controller_Action
+    implements OOXX_Controller_Acl_Interface, Zend_Acl_Resource_Interface
 {
     protected $_acl;
     
@@ -43,6 +43,13 @@ abstract class OOXX_Model_Acl_Abstract extends OOXX_Model_Abstract
         return $this->_identity;
     }
     
+    public function getAcl() {
+        if (null === $this->_acl) {
+            $this->setAcl(new Application_Model_Acl);
+        }
+        return $this->_acl;
+    }
+    
     public function checkAcl($action)
     {
         return $this->getAcl()->isAllowed(
@@ -51,6 +58,4 @@ abstract class OOXX_Model_Acl_Abstract extends OOXX_Model_Abstract
             $action
        );
     }
-
 }
-?>
