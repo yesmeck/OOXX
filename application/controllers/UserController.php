@@ -5,30 +5,31 @@ class UserController extends Zend_Controller_Action
 
     /**
      * @var Bisna\Application\Container\DoctrineContainer
-     *
-     *
      */
-    protected $doctrine = null;
+    protected $_doctrine = null;
 
     /**
      * @var Doctrine\ORM\EntityManager
-     *
-     *
      */
-    protected $entityManager = null;
+    protected $_entityManager = null;
 
     /**
      * @var OOXX\Entity\Repository\topicRepository
-     *
-     *
      */
-    protected $userRepository = null;
+    protected $_userRepository = null;
+    
+    /**
+     *
+     * @var Application_Service_Authentication 
+     */
+    protected $_authService;
 
     public function init()
     {
-        $this->doctrine = Zend_Registry::get('doctrine');
-        $this->entityManager = $this->doctrine->getEntityManager();
-        $this->userRepository = $this->entityManager->getRepository('\OOXX\Entity\User');
+        $this->_doctrine = Zend_Registry::get('doctrine');
+        $this->_entityManager = $this->_doctrine->getEntityManager();
+        $this->_userRepository = $this->_entityManager->getRepository('\OOXX\Entity\User');
+        $this->_authService = new Application_Service_Authentication;
     }
 
     public function indexAction()
@@ -44,9 +45,9 @@ class UserController extends Zend_Controller_Action
             
             $user = new \OOXX\Entity\User;
 
-            $this->userRepository->saveUser($user, $_POST);
+            $this->_userRepository->saveUser($user, $_POST);
 
-            $this->entityManager->flush();
+            $this->_entityManager->flush();
     
             $this->_helper->flashMessenger->addMessage('User saved.');
             
@@ -63,16 +64,15 @@ class UserController extends Zend_Controller_Action
         
         $request = $this->getRequest();
         if ($request->isPost() && $form->isValid($request->getPost())) {
-            
-            $authService = new Application_Service_Authentication;
-            
-            if (false === $authService->authenticate($_POST)) {
-                echo '登录失败';
-            }
 
-            $this->_redirect('/');
-            
-            return;
+                if (false === $this->_authService->authenticate($_POST)) {
+                    echo '登录失败';
+                }
+
+                $this->_redirect('/');
+
+                return;
+
         }
     }
 
@@ -85,8 +85,16 @@ class UserController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setResponseSegment($this->_getParam('responseSegment'));
     }
 
+    public function logoutAction()
+    {
+        $this->_authService->clear();
+        return $this->_redirect('/');
+    }
+
 
 }
+
+
 
 
 

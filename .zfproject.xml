@@ -21,6 +21,7 @@
           <actionMethod actionName="register"/>
           <actionMethod actionName="login"/>
           <actionMethod actionName="topLogin"/>
+          <actionMethod actionName="logout"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -62,6 +63,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="topLogin"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="logout"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -109,6 +113,7 @@
             <testApplicationActionMethod forActionName="register"/>
             <testApplicationActionMethod forActionName="login"/>
             <testApplicationActionMethod forActionName="topLogin"/>
+            <testApplicationActionMethod forActionName="logout"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
