@@ -16,6 +16,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $autoloader->pushAutoloader(array($appAutoloader, 'loadClass'), 'OOXX');
     }
     
+    protected function _initAuth()
+    {
+        $this->bootstrap('session');
+        $this->bootstrap('view');
+        $auth = Zend_Auth::getInstance();
+        if ($auth->hasIdentity()) {
+            $view = $this->getResource('view');
+            $view->user = $auth->getIdentity();
+        }
+    }
+    
     public function _initViewSettings()
     {
         $this->bootstrap('view');
@@ -31,6 +42,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         
         $this->_view->headLink()->appendStylesheet('/css/bootstrap.css');
         $this->_view->headLink()->appendStylesheet('/css/main.css');
+        
+        $this->_view->headScript()->appendFile('/js/jquery.js');
+        $this->_view->headScript()->appendFile('/js/bootstrap-dropdown.js');
         
     }
     

@@ -1,13 +1,14 @@
 <?php
 
-class Application_Form_UserRegister extends Zend_Form
+class Application_Form_UserTopLogin extends Zend_Form
 {
 
     public function init()
     {
-        $this->setAction('/user/register')
+        $this->setAction('/user/login')
              ->setMethod('post')
-             ->setAttrib('id', 'user-register-form')
+             ->setAttrib('id', 'user-top-login-form')
+             ->setAttrib('class', 'pull-right')
              ->setDisableLoadDefaultDecorators(true);
 
         $this->setDecorators(array(
