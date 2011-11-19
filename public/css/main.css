@@ -30,11 +30,11 @@ body {
 }
 
 .content .span11,
-.content .span3 {
+.content .span5 {
     min-height: 500px;
 }
 
-.content .span3 {
+.content .span5 {
     margin-left: 0;
     padding-left: 19px;
     border-left: 1px solid #eee;
