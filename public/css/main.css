@@ -29,12 +29,12 @@ body {
     margin: -20px -20px 20px;
 }
 
-.content .span10,
-.content .span4 {
+.content .span11,
+.content .span3 {
     min-height: 500px;
 }
 
-.content .span4 {
+.content .span3 {
     margin-left: 0;
     padding-left: 19px;
     border-left: 1px solid #eee;
@@ -42,6 +42,28 @@ body {
 
 .topbar .btn {
     border: 0;
+}
+
+a.vote {
+    display: block;
+    height: 11px;
+    margin: auto;
+    text-indent: -9999px;
+    width: 16px;
+}
+
+a.vote.up {
+    background-image: url("../images/up_arrow_triplet_blue.png");
+}
+
+a.vote.down {
+    background-image: url("../images/down_arrow_triplet_blue.png");
+}
+
+.vote-count {
+    color: #666666;
+    line-height: 14px;
+    text-align: center;
 }
 
 #new-topic-form label {
@@ -59,4 +81,42 @@ body {
 
 #new-topic-form .actions {
     padding-left: 50px;
+}
+
+#index-recent-topic-list .index-recent-topic {
+    min-height: 0px;
+    margin-left: 5px;
+}
+
+#index-recent-topic-list .index-recent-topic p {
+    padding: 0 5px;
+}
+
+#index-recent-topic-list .vote-column {
+    padding-top: 10px;
+}
+
+#index-small-ask-button {
+    margin: 20px 0 0 40px;
+}
+
+#index-big-ask-button {
+    width: 167px;
+}
+
+#index-hot-topic-list {
+    width: 300px;
+    border-top: 1px solid #EEEEEE;
+    padding-top: 5px;
+    margin-left: -5px;
+    margin-top: 17px;
+}
+
+#index-hot-topic-list .vote-column {
+    margin-left: 0;
+    width: 22px;
+}
+
+#index-hot-topic-list .index-hot-topic {
+    width: 258px;
 }

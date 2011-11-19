@@ -10,7 +10,11 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $topicModel = new Application_Model_Topic;
+        
+        $this->view->recentTopics = $topicModel->getRecentTopics();
+        
+        $this->view->hotTopics = $topicModel->getHotTopics();
     }
 
 

@@ -1,0 +1,48 @@
+<div class="span11">
+    <div id="index-recent-topic-list" class="row show-grid">
+        <?php foreach($this->recentTopics as $topic):?>
+        <div class="vote-column span1">
+            <a class="vote up">Up</a>
+            <div class="vote-count">123</div>
+            <a class="vote down">Down</a>
+        </div>
+        <div class="index-recent-topic span10">
+            <h3>
+                <a><?php echo $this->escape($topic->getTitle());?>，你们有什么想问的？</a>
+            </h3>
+            <p>
+                <?php echo $this->escape($topic->getContent());?>
+            </p>
+        </div>
+        <?php endforeach;?>
+        <a id="index-small-ask-button" class="btn small primary" href="<?php echo $this->url(array(
+            'controller' => 'topic',
+            'action'       => 'new',
+        ))?>">我是OOXX，向我提问吧！</a>
+    </div>
+</div>
+<div class="span3">
+    
+    <a id="index-big-ask-button" class="btn large primary" href="<?php echo $this->url(array(
+        'controller' => 'topic',
+        'action'     => 'new'
+    ))?>">
+        我是OOXX，向我提问吧！
+    </a>
+
+    <div id="index-hot-topic-list" class="row show-grid">
+        <?php foreach($this->hotTopics as $topic):?>
+        <div class="vote-column span1">
+            <a class="vote up">Up</a>
+            <div class="vote-count">123</div>
+            <a class="vote down">Down</a>
+        </div>
+        <div class="index-hot-topic span4">
+            <a><?php echo $this->escape($topic->getTitle());?>，你们有什么想问的？</a>
+            <p>
+                <?php echo $this->escape($topic->getContent());?>
+            </p>
+        </div>
+        <?php endforeach;?>
+    </div>
+</div>

@@ -47,7 +47,7 @@ class Topic
      * 
      * @param string $title 
      */
-    public function setTtitle($title)
+    public function setTitle($title)
     {
         $this->title = $title;
     }
@@ -57,7 +57,7 @@ class Topic
      * 
      * @return string
      */
-    public function getTtitle()
+    public function getTitle()
     {
         return $this->title;
     }
