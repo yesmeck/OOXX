@@ -33,6 +33,12 @@ class User
     protected $nickname;
     
     /**
+     * @Column(type="string", length=50)
+     * @var string
+     */
+    protected $roleId;
+
+    /**
      * @Column(type="datetime", nullable=true)
      * @var string
      */
@@ -114,7 +120,17 @@ class User
         return $this->nickname;
     }
     
-    /**
+    public function setRoleId($roleId)
+    {
+        $this->roleId = $roleId;
+    }
+    
+    public function getRoleId()
+    {
+        return $this->roleId;
+    }
+
+        /**
      * Set lasLogin time
      * 
      * @param string $lastLogin 

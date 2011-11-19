@@ -3,20 +3,7 @@
 class UserController extends Zend_Controller_Action
 {
 
-    /**
-     * @var Bisna\Application\Container\DoctrineContainer
-     */
-    protected $_doctrine = null;
-
-    /**
-     * @var Doctrine\ORM\EntityManager
-     */
-    protected $_entityManager = null;
-
-    /**
-     * @var OOXX\Entity\Repository\topicRepository
-     */
-    protected $_userRepository = null;
+    protected $_userModel;
     
     /**
      *
@@ -26,9 +13,7 @@ class UserController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->_doctrine = Zend_Registry::get('doctrine');
-        $this->_entityManager = $this->_doctrine->getEntityManager();
-        $this->_userRepository = $this->_entityManager->getRepository('\OOXX\Entity\User');
+        $this->_userModel = new Application_Model_User;
         $this->_authService = new Application_Service_Authentication;
     }
 
@@ -45,16 +30,14 @@ class UserController extends Zend_Controller_Action
             
             $user = new \OOXX\Entity\User;
 
-            $this->_userRepository->saveUser($user, $_POST);
-
-            $this->_entityManager->flush();
+            $this->_userModel->save($user, $_POST);
     
             $this->_helper->flashMessenger->addMessage('User saved.');
             
             return $this->_redirect('/');
         }
         
-        $this->view->form = $form;
+        $this->view->register_form = $form;
     }
 
     public function loginAction()

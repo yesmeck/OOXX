@@ -11,7 +11,7 @@ class Application_Form_UserRegister extends Zend_Form
              ->setDisableLoadDefaultDecorators(true);
 
         $this->setDecorators(array(
-            array('ViewScript', array('viewScript' => 'user/_top_login_form.phtml')),
+            array('ViewScript', array('viewScript' => 'user/_register_form.phtml')),
             'Form'
         ));
     }

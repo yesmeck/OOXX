@@ -12,13 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
-    public function saveUser(\OOXX\Entity\User $user, $values) {
-        
-        $user->setEmail($values['email']);
-        $user->setPassword($values['password']);
-        $user->setNickname($values['nickname']);
-        $user->setCreated(new \DateTime('now'));
-        
-        $this->getEntityManager()->persist($user);
-    }
 }

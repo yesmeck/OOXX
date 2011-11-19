@@ -12,13 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class TopicRepository extends EntityRepository
 {
-    
-    public function saveTopic(\OOXX\Entity\Topic $topic, array $values)
-    {
-        $topic->setTtitle($values['title']);
-        $topic->setContent($values['content']);
-        $topic->setCreated(new \DateTime("now"));
-
-        $this->getEntityManager()->persist($topic);
-    }
 }
