@@ -78,10 +78,12 @@ class User
      * Set email
      * 
      * @param string $email 
+     * @return User
      */
     public function setEmail($email)
     {
         $this->email = $email;
+        return $this;
     }
     
     /**
@@ -97,11 +99,13 @@ class User
     /**
      * Set password
      * 
-     * @param string $password 
+     * @param string $password
+     * @return User
      */
     public function setPassword($password)
     {
         $this->password = $password;
+        return $this;
     }
     
     /**
@@ -117,11 +121,13 @@ class User
     /**
      * Set nickname
      * 
-     * @param string $nickname 
+     * @param string $nickname
+     * @return User
      */
     public function setNickname($nickname)
     {
         $this->nickname = $nickname;
+        return $this;
     }
     
     /**
@@ -134,24 +140,38 @@ class User
         return $this->nickname;
     }
     
+    /**
+     * Set roleId
+     * 
+     * @param string $roleId
+     * @return User 
+     */
     public function setRoleId($roleId)
     {
         $this->roleId = $roleId;
+        return $this;
     }
     
+    /**
+     * Get roleId
+     * 
+     * @return string
+     */
     public function getRoleId()
     {
         return $this->roleId;
     }
 
-        /**
+    /**
      * Set lasLogin time
      * 
      * @param string $lastLogin 
+     * @return User
      */
     public function setLastLogin($lastLogin)
     {
         $this->lastLogin = $lastLogin;
+        return $this;
     }
     
     /**
@@ -168,10 +188,12 @@ class User
      * Set created time
      * 
      * @param type $created 
+     * @return User
      */
     public function setCreated($created)
     {
         $this->created = $created;
+        return $this;
     }
     
     /**
@@ -184,8 +206,15 @@ class User
         return $this->created;
     }
     
+    /**
+     * Add toplic
+     * 
+     * @param \OOXX\Entity\Topic $topic
+     * @return User 
+     */
     public function addTopic(\OOXX\Entity\Topic $topic)
     {
         $this->topics[] = $topic;
+        return $this;
     }
 }

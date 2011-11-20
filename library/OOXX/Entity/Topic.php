@@ -53,10 +53,12 @@ class Topic
      * Set title
      * 
      * @param string $title 
+     * @return Topic
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
     
     /**
@@ -73,10 +75,12 @@ class Topic
      * Set content
      * 
      * @param string $content 
+     * @return Topic
      */
     public function setContent($content)
     {
         $this->content = $content;
+        return $this;
     }
     
     /**
@@ -93,10 +97,12 @@ class Topic
      * Set created time
      * 
      * @param string $created 
+     * @return Topic
      */
     public function setCreated($created)
     {
         $this->created = $created;
+        return $this;
     }
 
 
@@ -114,11 +120,13 @@ class Topic
      * Set user
      * 
      * @param \OOXX\Entity\User $user 
+     * @return Topic
      */
     public function setUser(\OOXX\Entity\User $user)
     {
         $user->addTopic($this);
         $this->user = $user;
+        return $this;
     }
     
     /**
