@@ -140,3 +140,10 @@ a.vote.down {
 #topic-left-add-questions .btn {
     margin-top: 5px;
 }
+
+#topic-left-add-questions form,
+#topic-left-add-questions form .input,
+#topic-left-add-questions form p
+{
+    margin: 0;
+}

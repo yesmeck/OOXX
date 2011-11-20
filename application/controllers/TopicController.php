@@ -57,6 +57,12 @@ class TopicController extends OOXX_Controller_Action
         if (null === $this->view->topic) {
             throw new OOXX_Exception_404('话题不存在');
         }
+        
+        $this->view->questionForm = new Application_Form_Question(
+                $this->view->topic->getId()
+        );
+        
+        
     }
 
 }

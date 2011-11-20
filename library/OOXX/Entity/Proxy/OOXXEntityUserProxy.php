@@ -111,9 +111,15 @@ class OOXXEntityUserProxy extends \OOXX\Entity\User implements \Doctrine\ORM\Pro
         return parent::addTopic($topic);
     }
 
+    public function addQuestion(\OOXX\Entity\Question $question)
+    {
+        $this->_load();
+        return parent::addQuestion($question);
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'email', 'password', 'nickname', 'roleId', 'lastLogin', 'created', 'topics');
+        return array('__isInitialized__', 'id', 'email', 'password', 'nickname', 'roleId', 'lastLogin', 'created', 'topics', 'questions');
     }
 }

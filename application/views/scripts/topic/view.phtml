@@ -21,11 +21,7 @@
             <p>
                 向<?php echo $this->escape($this->topic->getUser()->getNickname())?>提问题:
             </p>
-            <div class="input">
-              <input type="text" size="30" name="xlInput" id="xlInput" class="xlarge">
-              <small>140字以内</small>
-            </div>
-            <input type="submit" value="提问" class="btn primary">
+            <?php echo $this->questionForm;?>
         </div>
         <div id="topic-left-questions" class="span5">
             <?php echo $this->escape($this->topic->getUser()->getNickname())?>未回答的问题
