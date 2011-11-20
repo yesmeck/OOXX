@@ -57,11 +57,18 @@ class User
      * @var Doctrine\Common\Collections\ArrayCollection
      */
     protected $topics = null;
+    
+    /**
+     * @OneToMany(targetEntity="Question", mappedBy="user");
+     * @var Doctrine\Common\Collections\ArrayCollection 
+     */
+    protected $questions = null;
 
 
     public function __construct()
     {
-        $this->topics = new ArrayCollection();
+        $this->topics = new ArrayCollection;
+        $this->questions = new ArrayCollection;
     }
     
     /**
@@ -215,6 +222,18 @@ class User
     public function addTopic(\OOXX\Entity\Topic $topic)
     {
         $this->topics[] = $topic;
+        return $this;
+    }
+    
+    /**
+     * Add question
+     * 
+     * @param \OOXX\Entity\Question $question
+     * @return User
+     */
+    public function addQuestion(\OOXX\Entity\Question $question)
+    {
+        $this->questions[] = $question;
         return $this;
     }
 }

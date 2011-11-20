@@ -1,5 +1,7 @@
 <?php
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 namespace OOXX\Entity;
 
 /**
@@ -34,10 +36,23 @@ class Topic
     
     /**
      * @ManyToOne(targetEntity="User", inversedBy="topics")
-     * @var int
+     * @var \OOXX\Entity\User
      */
     protected $user;
 
+    /**
+     * @OneToMany(targetEntity="Question", mappedBy="topic")
+     * @var Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $questions;
+    
+    /**
+     * Construct
+     */
+    public function __construct()
+    {
+        $this->questions = new ArrayCollection;
+    }
 
     /**
      * Get id
@@ -137,5 +152,17 @@ class Topic
     public function getUser()
     {
         return $this->user;
+    }
+    
+    /**
+     * Add question
+     * 
+     * @param \OOXX\Entity\Question $question
+     * @return Topic 
+     */
+    public function addQuestion(\OOXX\Entity\Question $question)
+    {
+        $this->questions[] = $question;
+        return $this;
     }
 }
