@@ -4,15 +4,29 @@
         <p>
             <?php echo $this->escape($this->topic->getContent()); ?>
         </p>
+        <div id="topic-view-questions" class="row">
+        <?php foreach($this->topic->getQuestions() as $question):?>
+            <div class="vote-column span1">
+                <a class="vote up">Up</a>
+                <div class="vote-count">123</div>
+                <a class="vote down">Down</a>
+            </div>
+            <div class="span9 question">
+                <h4 style="display: inline;"><?php echo $this->escape($question->getContent());?></h4>
+            </div>
+        <?php endforeach;?>
+        </div>
     </div>
 </div>
 <div class="span5">
+    <?php if(!$this->topic->isBelongTo(Zend_Auth::getInstance()->getIdentity())):?>
     <a class="btn large primary" href="<?php echo $this->url(array(
         'controller' => 'topic',
         'action'     => 'new'
     ))?>">
         订阅该话题
     </a>
+    <?php endif;?>
     <div id="topic-left" class="row show-grid">
         <div id="topic-left-user" class="span5">
             <?php echo $this->escape($this->topic->getUser()->getNickname())?>
@@ -24,7 +38,22 @@
             <?php echo $this->questionForm;?>
         </div>
         <div id="topic-left-questions" class="span5">
-            <?php echo $this->escape($this->topic->getUser()->getNickname())?>未回答的问题
+            <p>
+                <?php echo $this->escape($this->topic->getUser()->getNickname())?>未回答的问题
+            </p>
+            <?php foreach($this->unansweredQuestions as $question):?>
+            <div class="row">
+                <div class="vote-column span1">
+                    <a class="vote up">Up</a>
+                    <div class="vote-count">123</div>
+                    <a class="vote down">Down</a>
+                </div>
+                <div class="topic-unaswered-questions span4">
+                    <?php echo $this->escape($question->getContent()); ?>
+                </div>
+            </div>
+            <?php endforeach;?>
+           
         </div>
     </div>
     

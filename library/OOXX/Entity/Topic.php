@@ -165,4 +165,25 @@ class Topic
         $this->questions[] = $question;
         return $this;
     }
+    
+    /**
+     * Get questions
+     * 
+     * @return Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
+    
+    /**
+     * Check topic whether belong to the user.
+     * 
+     * @param \OOXX\Entity\User $user
+     * @return bool
+     */
+    public function isBelongTo(\OOXX\Entity\User $user)
+    {
+        return $this->getUser()->getId() === $user->getId();
+    }
 }

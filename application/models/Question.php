@@ -27,4 +27,9 @@ class Application_Model_Question extends OOXX_Model_Abstract
         $this->_entityManager->persist($question);
         $this->_entityManager->flush();
     }
+    
+    public function getUnanswerQuestions(\OOXX\Entity\Topic $topic)
+    {
+        return $topic->getQuestions();
+    }
 }

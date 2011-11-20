@@ -4,10 +4,12 @@ class TopicController extends OOXX_Controller_Action
 {
 
     protected $_topicModel;
+    protected $_questionModel;
 
     public function init()
     {
         $this->_topicModel = new Application_Model_Topic;
+        $this->_questionModel = new Application_Model_Question;
     }
     
     public function getResourceId()
@@ -52,17 +54,18 @@ class TopicController extends OOXX_Controller_Action
     {
         $topicId = $this->_getParam('topicId');
         
-        $this->view->topic = $this->_topicModel->find((int) $topicId);
+        $this->view->topic = $topic = $this->_topicModel->find((int) $topicId);
         
         if (null === $this->view->topic) {
             throw new OOXX_Exception_404('话题不存在');
         }
         
         $this->view->questionForm = new Application_Form_Question(
-                $this->view->topic->getId()
+                $topic->getId()
         );
         
-        
+        $this->view->unansweredQuestions = $this->_questionModel
+                                                ->getUnanswerQuestions($topic);
     }
 
 }
