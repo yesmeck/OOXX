@@ -22,7 +22,7 @@ abstract class OOXX_Model_Abstract implements OOXX_Model_Interface
     
     public function __call($name, $arguments) {
         if (!method_exists($this, $name)) {
-            call_user_method_array($name, $this->getRepository(), $arguments);
+            return call_user_func_array(array($this->_repository, $name), $arguments);
         }
     }
     

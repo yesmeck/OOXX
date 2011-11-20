@@ -12,9 +12,13 @@ class Application_Model_Topic extends OOXX_Model_Abstract
 
     public function save(\OOXX\Entity\Topic $topic, array $values)
     {
+        $userModel = new Application_Model_User;
+        $user = $userModel->find(Zend_Auth::getInstance()->getIdentity()->getId());
+        
         $topic->setTitle($values['title']);
         $topic->setContent($values['content']);
         $topic->setCreated(new \DateTime("now"));
+        $topic->setUser($user);
 
         $this->_entityManager->persist($topic);
         $this->_entityManager->flush();
@@ -35,7 +39,7 @@ class Application_Model_Topic extends OOXX_Model_Abstract
         $query->setMaxResults($limit);
         return $query->getResult();
     }
-  
+    
 }
 
 ?>

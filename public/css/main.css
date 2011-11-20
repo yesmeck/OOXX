@@ -120,3 +120,23 @@ a.vote.down {
 #index-hot-topic-list .index-hot-topic {
     width: 258px;
 }
+
+#topic-view {
+    padding: 10px;
+}
+
+#topic-left .span5 {
+    border-bottom: 1px solid #EEEEEE;
+    border-left: medium none;
+    margin: 15px 0 0 13px;
+    padding: 0 0 10px 0;
+    min-height: 0px;
+}
+
+#topic-left-questions.span5 {
+    border-bottom: none;
+}
+
+#topic-left-add-questions .btn {
+    margin-top: 5px;
+}

@@ -69,6 +69,18 @@ class OOXXEntityUserProxy extends \OOXX\Entity\User implements \Doctrine\ORM\Pro
         return parent::getNickname();
     }
 
+    public function setRoleId($roleId)
+    {
+        $this->_load();
+        return parent::setRoleId($roleId);
+    }
+
+    public function getRoleId()
+    {
+        $this->_load();
+        return parent::getRoleId();
+    }
+
     public function setLastLogin($lastLogin)
     {
         $this->_load();
@@ -81,10 +93,10 @@ class OOXXEntityUserProxy extends \OOXX\Entity\User implements \Doctrine\ORM\Pro
         return parent::getLastLogin();
     }
 
-    public function setCreated($crasted)
+    public function setCreated($created)
     {
         $this->_load();
-        return parent::setCreated($crasted);
+        return parent::setCreated($created);
     }
 
     public function getCreated()
@@ -93,9 +105,15 @@ class OOXXEntityUserProxy extends \OOXX\Entity\User implements \Doctrine\ORM\Pro
         return parent::getCreated();
     }
 
+    public function addTopic(\OOXX\Entity\Topic $topic)
+    {
+        $this->_load();
+        return parent::addTopic($topic);
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'email', 'password', 'nickname', 'lastLogin', 'created');
+        return array('__isInitialized__', 'id', 'email', 'password', 'nickname', 'roleId', 'lastLogin', 'created', 'topics');
     }
 }

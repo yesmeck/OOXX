@@ -33,6 +33,13 @@ class Topic
     protected $created;
     
     /**
+     * @ManyToOne(targetEntity="User", inversedBy="topics")
+     * @var int
+     */
+    protected $user;
+
+
+    /**
      * Get id
      * 
      * @return int
@@ -101,5 +108,26 @@ class Topic
     public function getCreated()
     {
         return $this->created;
+    }
+    
+    /**
+     * Set user
+     * 
+     * @param \OOXX\Entity\User $user 
+     */
+    public function setUser(\OOXX\Entity\User $user)
+    {
+        $user->addTopic($this);
+        $this->user = $user;
+    }
+    
+    /**
+     * Get user
+     * 
+     * @return \OOXX\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

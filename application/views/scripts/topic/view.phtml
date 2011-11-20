@@ -1,0 +1,35 @@
+<div class="span11">
+    <div id="topic-view">
+        <h2><?php echo $this->escape($this->topic->getTitle()); ?></h2>
+        <p>
+            <?php echo $this->escape($this->topic->getContent()); ?>
+        </p>
+    </div>
+</div>
+<div class="span5">
+    <a class="btn large primary" href="<?php echo $this->url(array(
+        'controller' => 'topic',
+        'action'     => 'new'
+    ))?>">
+        订阅该话题
+    </a>
+    <div id="topic-left" class="row show-grid">
+        <div id="topic-left-user" class="span5">
+            <?php echo $this->escape($this->topic->getUser()->getNickname())?>
+        </div>
+        <div id="topic-left-add-questions" class="span5">
+            <p>
+                向<?php echo $this->escape($this->topic->getUser()->getNickname())?>提问题:
+            </p>
+            <div class="input">
+              <input type="text" size="30" name="xlInput" id="xlInput" class="xlarge">
+              <small>140字以内</small>
+            </div>
+            <input type="submit" value="提问" class="btn primary">
+        </div>
+        <div id="topic-left-questions" class="span5">
+            <?php echo $this->escape($this->topic->getUser()->getNickname())?>未回答的问题
+        </div>
+    </div>
+    
+</div>

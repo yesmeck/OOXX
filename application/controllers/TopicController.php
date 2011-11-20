@@ -24,12 +24,6 @@ class TopicController extends OOXX_Controller_Action
         $this->_acl = $acl;
         return $this;
     }
-    
-
-    public function indexAction()
-    {
-        // action body
-    }
 
     public function newAction()
     {
@@ -54,6 +48,16 @@ class TopicController extends OOXX_Controller_Action
         $this->view->form = $form;
     }
 
+    public function viewAction()
+    {
+        $topicId = $this->_getParam('topicId');
+        
+        $this->view->topic = $this->_topicModel->find((int) $topicId);
+        
+        if (null === $this->view->topic) {
+            throw new OOXX_Exception_404('话题不存在');
+        }
+    }
 
 }
 

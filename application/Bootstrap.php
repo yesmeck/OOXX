@@ -16,6 +16,27 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $autoloader->pushAutoloader(array($appAutoloader, 'loadClass'), 'OOXX');
     }
     
+    public function _initRoutes()
+    {
+        $this->bootstrap('frontController');
+
+        $router = $this->frontController->getRouter();
+
+        $route = new Zend_Controller_Router_Route(
+            'topic/:topicId',
+            array(
+                'action'     => 'view',
+                'controller' => 'topic',
+            ),
+            array(
+                'topicId'    => '[0-9]+',
+            )
+        );
+
+        $router->addRoute('topicView', $route);
+    }
+
+
     protected function _initAuth()
     {
         $this->bootstrap('session');

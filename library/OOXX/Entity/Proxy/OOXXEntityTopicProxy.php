@@ -33,16 +33,16 @@ class OOXXEntityTopicProxy extends \OOXX\Entity\Topic implements \Doctrine\ORM\P
         return parent::getId();
     }
 
-    public function setTtitle($title)
+    public function setTitle($title)
     {
         $this->_load();
-        return parent::setTtitle($title);
+        return parent::setTitle($title);
     }
 
-    public function getTtitle()
+    public function getTitle()
     {
         $this->_load();
-        return parent::getTtitle();
+        return parent::getTitle();
     }
 
     public function setContent($content)
@@ -69,9 +69,15 @@ class OOXXEntityTopicProxy extends \OOXX\Entity\Topic implements \Doctrine\ORM\P
         return parent::getCreated();
     }
 
+    public function setUser(\OOXX\Entity\User $user)
+    {
+        $this->_load();
+        return parent::setUser($user);
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'title', 'content', 'created');
+        return array('__isInitialized__', 'id', 'title', 'content', 'created', 'user');
     }
 }

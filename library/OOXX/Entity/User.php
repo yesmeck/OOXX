@@ -1,5 +1,7 @@
 <?php
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 namespace OOXX\Entity;
 
 /**
@@ -49,6 +51,18 @@ class User
      * @var string
      */
     protected $created;
+    
+    /**
+     * @OneToMany(targetEntity="Topic", mappedBy="user")
+     * @var Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $topics = null;
+
+
+    public function __construct()
+    {
+        $this->topics = new ArrayCollection();
+    }
     
     /**
      * Get id
@@ -168,5 +182,10 @@ class User
     public function getCreated()
     {
         return $this->created;
+    }
+    
+    public function addTopic(\OOXX\Entity\Topic $topic)
+    {
+        $this->topics[] = $topic;
     }
 }

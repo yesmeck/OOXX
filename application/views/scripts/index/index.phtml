@@ -8,7 +8,9 @@
         </div>
         <div class="index-recent-topic span10">
             <h3>
-                <a><?php echo $this->escape($topic->getTitle());?>，你们有什么想问的？</a>
+                <a href="<?php echo $this->url(array(
+                    'topicId' => $topic->getId(),
+                ), 'topicView', true);?>"><?php echo $this->escape($topic->getTitle());?>，你们有什么想问的？</a>
             </h3>
             <p>
                 <?php echo $this->escape($topic->getContent());?>
@@ -38,7 +40,9 @@
             <a class="vote down">Down</a>
         </div>
         <div class="index-hot-topic span4">
-            <a><?php echo $this->escape($topic->getTitle());?>，你们有什么想问的？</a>
+            <a href="<?php echo $this->url(array(
+                    'topicId' => $topic->getId(),
+                ), 'topicView', true);?>"><?php echo $this->escape($topic->getTitle());?>，你们有什么想问的？</a>
             <p>
                 <?php echo $this->escape($topic->getContent());?>
             </p>
