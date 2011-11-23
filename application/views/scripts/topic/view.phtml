@@ -19,7 +19,9 @@
     </div>
 </div>
 <div class="span5">
-    <?php if(!$this->topic->isBelongTo(Zend_Auth::getInstance()->getIdentity())):?>
+    <?php if(!$this->topic->isBelongTo(
+            Zend_Registry::isRegistered('authUser') ? Zend_Registry::get('authUser') : null)
+        ):?>
     <a class="btn large primary" href="<?php echo $this->url(array(
         'controller' => 'topic',
         'action'     => 'new'
@@ -49,12 +51,23 @@
                     <a class="vote down">Down</a>
                 </div>
                 <div class="topic-unaswered-questions span4">
-                    <?php echo $this->escape($question->getContent()); ?>
+                    <div>
+                        <?php echo $this->escape($question->getContent()); ?>
+                    </div>
+                    <?php if($this->topic->isBelongTo(
+                        Zend_Registry::isRegistered('authUser') ? Zend_Registry::get('authUser') : null)
+                    ):?>
+                    <div>
+                        <a href="<?php echo $this->url(array(
+                            'questionId' => $question->getId(),
+                        ), 'answerNew', true);?>"><button id="answer-button" class="btn success">回答</button></a>
+                        
+                        <button id="remove-button" class="btn danger">忽略</button>
+                    </div>
+                    <?php endif;?>
                 </div>
             </div>
             <?php endforeach;?>
-           
         </div>
     </div>
-    
 </div>

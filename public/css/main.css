@@ -152,3 +152,8 @@ a.vote.down {
 {
     margin-left: 2px;
 }
+
+#answer-button, #remove-button {
+    font-size: 11px;
+    padding: 1px 6px 2px;
+}

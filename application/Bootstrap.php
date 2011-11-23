@@ -34,6 +34,19 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
 
         $router->addRoute('topicView', $route);
+
+        $route = new Zend_Controller_Router_Route(
+            'answer/question/:questionId',
+            array(
+                'action'     => 'new',
+                'controller' => 'answer',
+            ),
+            array(
+                'questionId' => '[0-9]+',
+            )
+        );
+
+        $router->addRoute('answerNew', $route);
     }
 
 

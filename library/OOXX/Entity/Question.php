@@ -2,6 +2,8 @@
 
 namespace OOXX\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity(repositoryClass="OOXX\Entity\Repository\QuestionRepository")
  * @Table(name="question")
@@ -39,6 +41,20 @@ class Question
      */
     protected $user;
     
+    /**
+     * @OneToMany(targetEntity="Answer", mappedBy="question");
+     * @var /OOXX/Entity/Answer
+     */
+    protected $answers = null;
+
+    /**
+     * Construct
+     */
+    public function __construct()
+    {
+        $this->answers = new ArrayCollection;
+    }
+
     /**
      * Get id
      * 
@@ -137,5 +153,18 @@ class Question
     public function getTopic()
     {
         return $this->topic;
+    }
+    
+    /**
+     * Add a answer
+     * 
+     * @param \OOXX\Entity\Answer $answer
+     * @return Question 
+     */
+    public function addAnswer(\OOXX\Entity\Answer $answer)
+    {
+        $this->answers[] = $answer;
+        
+        return $this;
     }
 }

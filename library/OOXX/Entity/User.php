@@ -63,7 +63,7 @@ class User
      * @var Doctrine\Common\Collections\ArrayCollection 
      */
     protected $questions = null;
-
+    
 
     public function __construct()
     {
