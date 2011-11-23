@@ -1,7 +1,7 @@
-<?php if(isset ($this->user)):?>
+<?php if(Zend_Registry::isRegistered('authUser')):?>
     <ul class="nav secondary-nav">
         <li class="dropdown" data-dropdown="dropdown">
-            <a class="dropdown-toggle" href="#"><?php echo $this->user->getNickname(); ?></a>
+            <a class="dropdown-toggle" href="#"><?php echo Zend_Registry::get('authUser')->getNickname(); ?></a>
             <ul class="dropdown-menu">
                 <li><a href="#">Secondary link</a></li>
                 <li><a href="#">Something else here</a></li>

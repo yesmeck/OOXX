@@ -44,7 +44,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) {
             $view = $this->getResource('view');
-            $view->user = $auth->getIdentity();
+            Zend_Registry::set('authUser', $auth->getIdentity());
         }
     }
     

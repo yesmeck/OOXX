@@ -14,7 +14,7 @@ class Application_Model_Question extends OOXX_Model_Abstract
         $question = new \OOXX\Entity\Question;
         
         $userModel = new Application_Model_User;
-        $user = $userModel->find(Zend_Auth::getInstance()->getIdentity()->getId());
+        $user = $userModel->find(Zend_Registry::get('authUser')->getId());
         
         $topicModel = new Application_Model_Topic;
         $topic = $topicModel->find($values['topicId']);
