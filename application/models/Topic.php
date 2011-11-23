@@ -10,8 +10,10 @@ class Application_Model_Topic extends OOXX_Model_Abstract
         $this->_repository = $this->_entityManager->getRepository('\OOXX\Entity\Topic');
     }
 
-    public function save(\OOXX\Entity\Topic $topic, array $values)
+    public function save(array $values)
     {
+        $topic = new \OOXX\Entity\Topic;
+        
         $userModel = new Application_Model_User;
         $user = $userModel->find(Zend_Registry::get('authUser')->getId());
         

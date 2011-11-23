@@ -38,9 +38,7 @@ class TopicController extends OOXX_Controller_Action
         
         if ($this->getRequest()->isPost() && $form->isValid($_POST)) {
             
-            $topic = new \OOXX\Entity\Topic;
-            
-            $this->_topicModel->save($topic, $_POST);
+            $this->_topicModel->save($_POST);
     
             $this->_helper->flashMessenger->addMessage('Topic saved.');
             

@@ -9,7 +9,9 @@ class Application_Model_User extends OOXX_Model_Abstract
         $this->_repository = $this->_entityManager->getRepository('\OOXX\Entity\User');
     }
     
-    public function save(\OOXX\Entity\User $user, $values) {
+    public function save(array $values) {
+        
+        $user = new \OOXX\Entity\User;
         
         $user->setEmail($values['email']);
         $user->setPassword($values['password']);
