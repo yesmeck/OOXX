@@ -1,8 +1,8 @@
 <?php
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 namespace OOXX\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Entity(repositoryClass="OOXX\Entity\Repository\UserRepository") @Table(name="user")
