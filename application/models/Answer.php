@@ -20,6 +20,11 @@ class Application_Model_Answer extends OOXX_Model_Abstract
                ->setQuestion($question);
         
         $this->_entityManager->persist($answer);
+        
+        $question->close();
+        
+        $this->_entityManager->persist($question);
+        
         $this->_entityManager->flush();
     }
 }

@@ -30,6 +30,9 @@ class Application_Model_Question extends OOXX_Model_Abstract
     
     public function getUnanswerQuestions(\OOXX\Entity\Topic $topic)
     {
-        return $topic->getQuestions();
+        return $this->findBy(array(
+            'status' => 'open',
+            'topic'  => $topic->getId(),
+        ));
     }
 }

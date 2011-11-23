@@ -12,4 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class AnswerRepository extends EntityRepository
 {
+    
+public function test()
+{
+    $this->findBy(array('status' => 'open'));
+}
 }

@@ -28,6 +28,12 @@ class Question
      * @var string
      */
     protected $created;
+    
+    /**
+     * @Column(type="string", columnDefinition="ENUM('open', 'close')")
+     * @var type 
+     */
+    protected $status = 'open';
 
     /**
      * @ManyToOne(targetEntity="Topic", inversedBy="questions")
@@ -164,6 +170,18 @@ class Question
     public function addAnswer(\OOXX\Entity\Answer $answer)
     {
         $this->answers[] = $answer;
+        
+        return $this;
+    }
+    
+    /**
+     * Close question
+     * 
+     * @return Question 
+     */
+    public function close()
+    {
+        $this->status = 'close';
         
         return $this;
     }
