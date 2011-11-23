@@ -93,7 +93,7 @@ class OOXXEntityTopicProxy extends \OOXX\Entity\Topic implements \Doctrine\ORM\P
         return parent::getQuestions();
     }
 
-    public function isBelongTo(\OOXX\Entity\User $user)
+    public function isBelongTo($user)
     {
         $this->_load();
         return parent::isBelongTo($user);

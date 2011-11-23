@@ -179,11 +179,14 @@ class Topic
     /**
      * Check topic whether belong to the user.
      * 
-     * @param \OOXX\Entity\User $user
+     * @param null|\OOXX\Entity\User $user
      * @return bool
      */
-    public function isBelongTo(\OOXX\Entity\User $user)
+    public function isBelongTo($user)
     {
+        if (null === $user) {
+            return false;
+        }
         return $this->getUser()->getId() === $user->getId();
     }
 }
