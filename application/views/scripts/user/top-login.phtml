@@ -1,17 +1,20 @@
 <?php if(Zend_Registry::isRegistered('authUser')):?>
     <ul class="nav secondary-nav">
-        <li class="dropdown" data-dropdown="dropdown">
-            <a class="dropdown-toggle" href="#"><?php echo Zend_Registry::get('authUser')->getNickname(); ?></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Secondary link</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="<?php echo $this->url(array(
+            <li>
+                <a href="#">首页</a>
+            </li>
+            <li>
+                <a href=""><?php echo Zend_Registry::get('authUser')->getNickname(); ?></a>
+            </li>
+            <li>
+                <a href="#">设置</a>
+            </li>
+            <li>
+                <a href="<?php echo $this->url(array(
                     'controller' => 'user',
                     'action'     => 'logout',
-                ))?>">退出</a></li>
-            </ul>
-        </li>
+                ))?>">退出</a>
+            </li>
     </ul>
 <?php else:?>
     <?php echo $this->form;?>
