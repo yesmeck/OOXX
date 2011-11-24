@@ -81,15 +81,27 @@ class OOXXEntityQuestionProxy extends \OOXX\Entity\Question implements \Doctrine
         return parent::getTopic();
     }
 
-    public function addAnswer(\OOXX\Entity\Answer $answer)
+    public function setAnswer(\OOXX\Entity\Answer $answer)
     {
         $this->_load();
-        return parent::addAnswer($answer);
+        return parent::setAnswer($answer);
+    }
+
+    public function getAnswer()
+    {
+        $this->_load();
+        return parent::getAnswer();
+    }
+
+    public function close()
+    {
+        $this->_load();
+        return parent::close();
     }
 
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'content', 'created', 'topic', 'user', 'answers');
+        return array('__isInitialized__', 'id', 'content', 'created', 'status', 'topic', 'user', 'answer');
     }
 }

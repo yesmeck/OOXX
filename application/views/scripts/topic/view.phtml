@@ -5,7 +5,7 @@
             <?php echo $this->escape($this->topic->getContent()); ?>
         </p>
         <div id="topic-view-questions" class="row">
-        <?php foreach($this->topic->getQuestions() as $question):?>
+        <?php foreach($this->answeredQuestions as $question):?>
             <div class="vote-column span1">
                 <a class="vote up">Up</a>
                 <div class="vote-count">123</div>
@@ -13,6 +13,9 @@
             </div>
             <div class="span9 question">
                 <h4 style="display: inline;"><?php echo $this->escape($question->getContent());?></h4>
+                <p>
+                    <?php echo $question->getAnswer()->getContent();?>
+                </p>
             </div>
         <?php endforeach;?>
         </div>

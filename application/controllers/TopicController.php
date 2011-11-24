@@ -62,8 +62,11 @@ class TopicController extends OOXX_Controller_Action
                 $topic->getId()
         );
         
+        $this->view->answeredQuestions = $this->_questionModel
+                                        ->getAnsweredQuestions($topic);
+        
         $this->view->unansweredQuestions = $this->_questionModel
-                                                ->getUnanswerQuestions($topic);
+                                                ->getUnansweredQuestions($topic);
     }
 
 }

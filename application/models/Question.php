@@ -28,7 +28,17 @@ class Application_Model_Question extends OOXX_Model_Abstract
         $this->_entityManager->flush();
     }
     
-    public function getUnanswerQuestions(\OOXX\Entity\Topic $topic)
+    
+    public function getAnsweredQuestions(\OOXX\Entity\Topic $topic)
+    {
+        return $this->findBy(array(
+            'status' => 'close',
+            'topic'  => $topic->getId(),
+        ));
+    }
+
+
+    public function getUnansweredQuestions(\OOXX\Entity\Topic $topic)
     {
         return $this->findBy(array(
             'status' => 'open',

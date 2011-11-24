@@ -63,7 +63,7 @@ class Answer
     
     public function setQuestion(\OOXX\Entity\Question $question)
     {
-        $question->addAnswer($this);
+        $question->setAnswer($this);
         $this->question = $question;
         
         return $this;
