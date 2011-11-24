@@ -79,7 +79,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         
         $this->_view->headScript()->appendFile('/js/jquery.js');
         $this->_view->headScript()->appendFile('/js/bootstrap-dropdown.js');
-        
+        $this->_view->headScript()->appendFile('/js/bootstrap-modal.js');
     }
     
 }

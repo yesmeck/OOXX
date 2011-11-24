@@ -157,3 +157,67 @@ a.vote.down {
     font-size: 11px;
     padding: 1px 6px 2px;
 }
+
+#dl_handle.dl_handle_2 {
+    background: url("http://open.denglu.cc/images/bottom2.gif") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    overflow: hidden;
+    width: 130px;
+    vertical-align: bottom;
+}
+
+#dl_handle ul {
+    float: left;
+    margin: 2px 0 0 38px;
+}
+
+#dl_handle ul li {
+    float: left;
+    list-style: none outside none;
+    margin-right: 3px;
+}
+
+#dl_handle ul li img {
+    border: medium none;
+}
+
+.denglu_con {
+    height: auto;
+    overflow: hidden;
+}
+
+.denglu_con li {
+    float: left;
+    padding: 2px 10px 2px 0;
+    list-style: none;
+    width: 240px;
+}
+
+.denglu_con li .denglu_ico {
+    display: block;
+    height: 30px;
+    text-indent: -999em;
+    width: 120px;
+}
+
+.denglu_renren, .denglu_sina, .denglu_tencent, .denglu_netease, .denglu_sohu, .denglu_windowslive, .denglu_360, .denglu_shengda, .denglu_kaixin001, .denglu_douban, .denglu_google, .denglu_51, .denglu_qzone, .denglu_alipay, .denglu_alipayquick, .denglu_tenpay, .denglu_taobao, .denglu_yahoo, .denglu_tianya, .denglu_kaixin001open, .denglu_netease163 {
+    background: url("../images/denglu_all_bg.gif") no-repeat scroll 0 0 transparent;
+}
+
+.denglu_sina {
+    background-position: -350px -30px;
+}
+
+.denglu_renren {
+    background-position: -350px 0;
+}
+
+.denglu_qzone {
+    background-position: -350px -360px;
+}
+
+.denglu_douban {
+    background-position: -350px -270px;
+}
