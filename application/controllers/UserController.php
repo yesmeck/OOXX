@@ -44,7 +44,7 @@ class UserController extends Zend_Controller_Action
         
         if ($this->getRequest()->isPost() && $form->isValid($_POST)) {
             
-            $this->_userModel->save($user, $_POST);
+            $this->_userModel->save($_POST);
     
             $this->_helper->flashMessenger->addMessage('User saved.');
             
