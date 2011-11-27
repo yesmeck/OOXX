@@ -2,6 +2,8 @@
 
 namespace OOXX\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity(repositoryClass="OOXX\Entity\Repository\QuestionRepository")
  * @Table(name="question")
@@ -28,7 +30,7 @@ class Question
     protected $created;
     
     /**
-     * @Column(type="string", columnDefinition="ENUM('open', 'close')")
+     * @Column(type="string", length=5)
      * @var type 
      */
     protected $status = 'open';
@@ -50,6 +52,17 @@ class Question
      * @var /OOXX/Entity/Answer
      */
     protected $answer = null;
+    
+    /**
+     * @OneToMany(targetEntity="Vote", mappedBy="question")
+     * @var Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $votes = null;
+    
+    public function __construct()
+    {
+        $this->votes = new ArrayCollection;
+    }
 
     /**
      * Get id
@@ -174,6 +187,18 @@ class Question
         return $this->answer;
     }
 
+    /**
+     * Add vote
+     * 
+     * @param \OOXX\Entity\Vote $vote
+     * @return Question 
+     */
+    public function addVote(\OOXX\Entity\Vote $vote)
+    {
+       $this->votes[] = $vote;
+       
+       return $this;
+    }
 
     /**
      * Close question

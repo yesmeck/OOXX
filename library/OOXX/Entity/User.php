@@ -64,11 +64,18 @@ class User
      */
     protected $questions = null;
     
+    /**
+     * @OneToMany(targetEntity="Vote", mappedBy="user");
+     * @var Doctrine\Common\Collections\ArrayCollection 
+     */
+    protected $votes = null;
+    
 
     public function __construct()
     {
-        $this->topics = new ArrayCollection;
-        $this->questions = new ArrayCollection;
+        $this->topics       = new ArrayCollection;
+        $this->questions    = new ArrayCollection;
+        $this->votes        = new ArrayCollection;
     }
     
     /**
@@ -234,6 +241,18 @@ class User
     public function addQuestion(\OOXX\Entity\Question $question)
     {
         $this->questions[] = $question;
+        return $this;
+    }
+    
+    /**
+     * Add vote
+     * 
+     * @param \OOXX\Entity\Vote $vote
+     * @return User 
+     */
+    public function addVote(\OOXX\Entity\Vote $vote)
+    {
+        $this->votes[] = $vote;
         return $this;
     }
 }
