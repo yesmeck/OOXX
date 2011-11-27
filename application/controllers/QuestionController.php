@@ -1,6 +1,6 @@
 <?php
 
-class QuestionController extends OOXX_Controller_Action
+class QuestionController extends OOXX_Controller_Action_Abstract
 {
     
     protected $_questionModel;

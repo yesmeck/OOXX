@@ -1,6 +1,6 @@
 <?php
 
-class TopicController extends OOXX_Controller_Action
+class TopicController extends OOXX_Controller_Action_Abstract
 {
 
     protected $_topicModel;
