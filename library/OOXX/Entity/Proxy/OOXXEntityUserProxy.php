@@ -117,9 +117,21 @@ class OOXXEntityUserProxy extends \OOXX\Entity\User implements \Doctrine\ORM\Pro
         return parent::addQuestion($question);
     }
 
+    public function addVote(\OOXX\Entity\Vote $vote)
+    {
+        $this->_load();
+        return parent::addVote($vote);
+    }
+
+    public function getVoteToQuestion(\OOXX\Entity\Question $question)
+    {
+        $this->_load();
+        return parent::getVoteToQuestion($question);
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'email', 'password', 'nickname', 'roleId', 'lastLogin', 'created', 'topics', 'questions');
+        return array('__isInitialized__', 'id', 'email', 'password', 'nickname', 'roleId', 'lastLogin', 'created', 'topics', 'questions', 'votes');
     }
 }

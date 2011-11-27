@@ -255,4 +255,5 @@ class User
         $this->votes[] = $vote;
         return $this;
     }
+
 }

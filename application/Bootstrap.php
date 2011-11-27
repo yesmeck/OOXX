@@ -47,6 +47,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
 
         $router->addRoute('answerNew', $route);
+
+        $route = new Zend_Controller_Router_Route(
+            'question/vote',
+            array(
+                'action'     => 'index',
+                'controller' => 'vote',
+            )
+        );
+
+        $router->addRoute('questionVote', $route);
     }
 
 
@@ -80,6 +90,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->_view->headScript()->appendFile('/js/jquery.js');
         $this->_view->headScript()->appendFile('/js/bootstrap-dropdown.js');
         $this->_view->headScript()->appendFile('/js/bootstrap-modal.js');
+        $this->_view->headScript()->appendFile('/js/ooxx.js');
     }
     
 }

@@ -1,3 +1,4 @@
+<?php $voteModel = new Application_Model_Vote; ?>
 <div class="span11">
     <div id="topic-view">
         <h2><?php echo $this->escape($this->topic->getTitle()); ?></h2>
@@ -7,9 +8,21 @@
         <div id="topic-view-questions" class="row">
         <?php foreach($this->answeredQuestions as $question):?>
             <div class="vote-column span1">
-                <a class="vote up">Up</a>
-                <div class="vote-count">123</div>
-                <a class="vote down">Down</a>
+                <?php
+                    $vote = null;
+                    if (Zend_Registry::isRegistered('authUser')) {
+                        $vote = $voteModel->getVoteToQuestionByUser($question, Zend_Registry::get('authUser'));
+                    }
+                ?>
+                <a class="vote up <?php if(null != $vote && $vote->getType() == \OOXX\Entity\Vote::TYPE_UP):?>undo<?php endif;?>" data-qid="<?php
+                    echo $question->getId();
+                ?>">Up</a>
+                <div class="vote-count">
+                    <?php echo $question->getVoteCount();?>
+                </div>
+                <a class="vote down <?php if(null != $vote && $vote->getType() == \OOXX\Entity\Vote::TYPE_DOWN):?>undo<?php endif;?>" data-qid="<?php
+                    echo $question->getId();
+                ?>">Down</a>
             </div>
             <div class="span9 question">
                 <h4 style="display: inline;"><?php echo $this->escape($question->getContent());?></h4>
@@ -48,11 +61,23 @@
             </p>
             <?php foreach($this->unansweredQuestions as $question):?>
             <div class="row">
-                <div class="vote-column span1">
-                    <a class="vote up">Up</a>
-                    <div class="vote-count">123</div>
-                    <a class="vote down">Down</a>
+            <div class="vote-column span1">
+                <?php
+                    $vote = null;
+                    if (Zend_Registry::isRegistered('authUser')) {
+                        $vote = $voteModel->getVoteToQuestionByUser($question, Zend_Registry::get('authUser'));
+                    }
+                ?>
+                <a class="vote up <?php if(null != $vote && $vote->getType() == \OOXX\Entity\Vote::TYPE_UP):?>undo<?php endif;?>" data-qid="<?php
+                    echo $question->getId();
+                ?>">Up</a>
+                <div class="vote-count">
+                    <?php echo $question->getVoteCount();?>
                 </div>
+                <a class="vote down <?php if(null != $vote && $vote->getType() == \OOXX\Entity\Vote::TYPE_DOWN):?>undo<?php endif;?>" data-qid="<?php
+                    echo $question->getId();
+                ?>">Down</a>
+            </div>
                 <div class="topic-unaswered-questions span4">
                     <div>
                         <?php echo $this->escape($question->getContent()); ?>

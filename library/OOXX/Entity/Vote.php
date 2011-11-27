@@ -7,6 +7,10 @@ namespace OOXX\Entity;
  */
 class Vote
 {
+    
+    const TYPE_UP = 'up';
+    const TYPE_DOWN = 'down';
+
     /**
      * @Id @GeneratedValue
      * @Column(type="bigint")
@@ -14,6 +18,13 @@ class Vote
      */
     protected $id;
     
+    /**
+     * @Column(type="string", length="10");
+     * @var string
+     */
+    protected $type;
+
+
     /**
      * @ManyToOne(targetEntity="Question", inversedBy="votes")
      * @var \OOXX\Entity\Question
@@ -37,6 +48,32 @@ class Vote
     }
     
     /**
+     * Set type
+     * 
+     * @param string $type
+     * @return Vote
+     */
+    public function setType($type)
+    {
+        if (!in_array($type, array(self::TYPE_UP, self::TYPE_DOWN))) {
+            throw new \InvalidArgumentException('Invalid type');
+        }
+        $this->type = $type;
+        
+        return $this;
+    }
+    
+    /**
+     * Get type
+     * 
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+        /**
      * Set question
      * 
      * @param \OOXX\Entity\Question $question

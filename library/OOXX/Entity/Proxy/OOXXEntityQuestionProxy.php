@@ -93,6 +93,30 @@ class OOXXEntityQuestionProxy extends \OOXX\Entity\Question implements \Doctrine
         return parent::getAnswer();
     }
 
+    public function addVote(\OOXX\Entity\Vote $vote)
+    {
+        $this->_load();
+        return parent::addVote($vote);
+    }
+
+    public function addVoteCount()
+    {
+        $this->_load();
+        return parent::addVoteCount();
+    }
+
+    public function subtractVoteCount()
+    {
+        $this->_load();
+        return parent::subtractVoteCount();
+    }
+
+    public function getVoteCount()
+    {
+        $this->_load();
+        return parent::getVoteCount();
+    }
+
     public function close()
     {
         $this->_load();
@@ -102,6 +126,6 @@ class OOXXEntityQuestionProxy extends \OOXX\Entity\Question implements \Doctrine
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'content', 'created', 'status', 'topic', 'user', 'answer');
+        return array('__isInitialized__', 'id', 'content', 'created', 'status', 'topic', 'user', 'answer', 'votes', 'voteCount');
     }
 }

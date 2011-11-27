@@ -4,6 +4,10 @@ abstract class OOXX_Model_Abstract implements OOXX_Model_Interface
 {
     protected $_doctrine;
 
+    /**
+     *
+     * @var Doctrine\ORM\EntityManager
+     */
     protected $_entityManager;
     
     protected $_repository;

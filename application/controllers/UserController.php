@@ -73,15 +73,6 @@ class UserController extends Zend_Controller_Action
         }
     }
 
-    public function topLoginAction()
-    {
-        $form = new Application_Form_UserTopLogin;
-        
-        $this->view->form = $form;
-        
-        $this->_helper->viewRenderer->setResponseSegment($this->_getParam('responseSegment'));
-    }
-
     public function logoutAction()
     {
         $this->_authService->clear();

@@ -59,6 +59,16 @@ class Question
      */
     protected $votes = null;
     
+    /**
+     * @Column(type="bigint")
+     * @var int
+     */
+    protected $voteCount = 0;
+
+
+    /**
+     * Custruct
+     */
     public function __construct()
     {
         $this->votes = new ArrayCollection;
@@ -197,7 +207,51 @@ class Question
     {
        $this->votes[] = $vote;
        
+       switch ($vote->getType()) {
+           case 'up':
+               $this->addVoteCount();
+               break;
+
+           case 'down':
+               $this->subtractVoteCount();
+               break;
+       }
+       
        return $this;
+    }
+    
+    /**
+     * Add a vote count;
+     * 
+     * @return Question 
+     */
+    public function addVoteCount()
+    {
+        $this->voteCount++;
+        
+        return $this;
+    }
+    
+    /**
+     * Subtract a vote count;
+     * 
+     * @return Question 
+     */
+    public function subtractVoteCount()
+    {
+        $this->voteCount--;
+        
+        return $this;
+    }
+    
+    /**
+     * Get vote count
+     * 
+     * @return int
+     */
+    public function getVoteCount()
+    {
+        return $this->voteCount;
     }
 
     /**
