@@ -45,6 +45,7 @@ body {
 }
 
 a.vote {
+    cursor: pointer;
     display: block;
     height: 11px;
     margin: auto;
@@ -54,10 +55,20 @@ a.vote {
 
 a.vote.up {
     background-image: url("../images/up_arrow_triplet_blue.png");
+    background-repeat: no-repeat;
 }
 
 a.vote.down {
     background-image: url("../images/down_arrow_triplet_blue.png");
+    background-repeat: no-repeat;
+}
+
+a.vote.up.undo, a.vote.down.undo {
+    background-position: -32px 0;
+}
+
+a.vote.up:hover, a.vote.down:hover {
+    background-position: -16px 0;
 }
 
 .vote-count {
