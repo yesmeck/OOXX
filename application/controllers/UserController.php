@@ -79,6 +79,13 @@ class UserController extends Zend_Controller_Action
         return $this->_redirect('/');
     }
 
+    public function settingsAction()
+    {
+        $form = new Application_Form_UserSettings;
+
+        $this->view->form = $form;
+    }
+
 
 }
 
