@@ -57,7 +57,7 @@ class UserController extends Zend_Controller_Action
     public function loginAction()
     {
         
-        $form = new Application_Form_UserTopLogin;
+        $form = new Application_Form_User_Login;
         
         $request = $this->getRequest();
         if ($request->isPost() && $form->isValid($request->getPost())) {
@@ -71,6 +71,8 @@ class UserController extends Zend_Controller_Action
                 return;
 
         }
+
+        $this->view->form = $form;
     }
 
     public function logoutAction()
