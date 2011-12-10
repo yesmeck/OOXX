@@ -40,7 +40,7 @@ class UserController extends Zend_Controller_Action
 
     public function registerAction()
     {
-        $form = new Application_Form_UserRegister;
+        $form = new Application_Form_User_Register;
         
         if ($this->getRequest()->isPost() && $form->isValid($_POST)) {
             
@@ -83,7 +83,7 @@ class UserController extends Zend_Controller_Action
 
     public function settingsAction()
     {
-        $form = new Application_Form_UserSettings;
+        $form = new Application_Form_User_Settings;
 
         $this->view->form = $form;
     }

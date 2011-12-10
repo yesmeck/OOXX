@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_UserSettings extends Zend_Form
+class Application_Form_User_Settings extends Zend_Form
 {
     public function init()
     {
@@ -10,7 +10,7 @@ class Application_Form_UserSettings extends Zend_Form
              ->setDisableLoadDefaultDecorators(true);
 
         $this->setDecorators(array(
-            array('ViewScript', array('viewScript' => 'user/_settings_form.phtml')),
+            array('ViewScript', array('viewScript' => 'user/form/_settings.phtml')),
             'Form'
         ));
     }
