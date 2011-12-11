@@ -42,16 +42,16 @@ class UserController extends Zend_Controller_Action
     {
         $form = new Application_Form_User_Register;
         
-        if ($this->getRequest()->isPost() && $form->isValid($_POST)) {
-            
-            $this->_userModel->save($_POST);
-    
-            $this->_helper->flashMessenger->addMessage('User saved.');
-            
-            return $this->_redirect('/');
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($this->getRequest()->getPost())) {
+                $this->_userModel->save($form->getValues());
+                return $this->_redirect('/');
+            } else {
+                $this->view->errorMessages = $form->getMessages();
+            }
         }
         
-        $this->view->register_form = $form;
+        $this->view->registerForm = $form;
     }
 
     public function loginAction()

@@ -5,6 +5,13 @@ class Application_Form_User_Login extends Zend_Form
 
     public function init()
     {
+
+        $this->addElementPrefixPath(
+            'Application_Validate',
+            APPLICATION_PATH . '/models/validate/',
+            'validate'
+        );
+
         $this->setAction('/user/login')
              ->setMethod('post')
              ->setAttrib('id', 'user-login-form')
@@ -20,19 +27,25 @@ class Application_Form_User_Login extends Zend_Form
               ->removeDecorator('Errors')
               ->removeDecorator('Description')
               ->removeDecorator('HtmlTag')
-              ->removeDecorator('Label');
+              ->removeDecorator('Label')
+              ->addFilter('StringTrim')
+              ->addValidator('EmailAddress')
+              ->addValidator('StringLength', true, array(3, 128))
+              ->setRequired(true);
 
         $password = new Zend_Form_Element_Password('password');
         $password->setOptions(array('class' => 'xlarge'))
                  ->removeDecorator('Errors')
                  ->removeDecorator('Description')
                  ->removeDecorator('HtmlTag')
-                 ->removeDecorator('Label');
+                 ->removeDecorator('Label')
+                 ->setRequired(true);
 
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('登录')
                ->setOptions(array('class' => 'btn primary'))
-               ->removeDecorator('DtDdWrapper');
+               ->removeDecorator('DtDdWrapper')
+               ->setIgnore(true);
 
         $this->addELement($email)
              ->addELement($password)
