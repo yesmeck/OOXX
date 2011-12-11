@@ -1,51 +1,38 @@
 <?php
 
-class Application_Form_User_Login extends Zend_Form
+class Application_Form_User_Login extends OOXX_Form
 {
 
     public function init()
     {
 
-        $this->addElementPrefixPath(
-            'OOXX_Validate',
-            'OOXX/Validate/',
-            'validate'
-        );
-
         $this->setAction('/user/login')
              ->setMethod('post')
-             ->setAttrib('id', 'user-login-form')
-             ->setDisableLoadDefaultDecorators(true);
-
-        $this->setDecorators(array(
-            array('ViewScript', array('viewScript' => 'user/form/_login.phtml')),
-            'Form',
-        ));
+             ->setAttrib('id', 'user-login-form');
 
         $email = new Zend_Form_Element_Text('email');
-        $email->setOptions(array('class' => 'xlarge'))
-              ->removeDecorator('Errors')
-              ->removeDecorator('Description')
-              ->removeDecorator('HtmlTag')
-              ->removeDecorator('Label')
+        $email->setLabel('邮箱')
+              ->setOptions(array('class' => 'xlarge'))
+              ->clearDecorators()
               ->addFilter('StringTrim')
               ->addValidator('EmailAddress')
               ->addValidator('StringLength', true, array(3, 128))
               ->setRequired(true);
 
         $password = new Zend_Form_Element_Password('password');
-        $password->setOptions(array('class' => 'xlarge'))
-                 ->removeDecorator('Errors')
-                 ->removeDecorator('Description')
-                 ->removeDecorator('HtmlTag')
-                 ->removeDecorator('Label')
+        $password->setLabel('密码')
+                 ->clearDecorators()
+                 ->setOptions(array('class' => 'xlarge'))
                  ->setRequired(true);
 
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('登录')
                ->setOptions(array('class' => 'btn primary'))
-               ->removeDecorator('DtDdWrapper')
-               ->setIgnore(true);
+               ->clearDecorators()
+               ->setIgnore(true)
+               ->setOrder(100);
+
+//       Zend_Debug::dump($submit->getDecorators());
 
         $this->addELement($email)
              ->addELement($password)
