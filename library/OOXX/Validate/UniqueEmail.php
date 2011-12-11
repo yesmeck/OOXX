@@ -1,6 +1,6 @@
 <?php
 
-class Application_Validate_UniqueEmail extends Zend_Validate_Abstract
+class OOXX_Validate_UniqueEmail extends Zend_Validate_Abstract
 {
     const EMAIL_EXISTS = '邮箱已存在';
 
