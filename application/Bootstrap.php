@@ -89,6 +89,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('view');
         
         $this->_view = $this->getResource('view');
+
+        // Customer helper path
+        $this->_view->addHelperPath('OOXX/View/Helper', 'OOXX_View_Helper');
         
         $this->_view->setEncoding('UTF-8');
         $this->_view->doctype('HTML5');
