@@ -14,12 +14,18 @@ class Application_Model_User extends OOXX_Model_Abstract
         $user = new \OOXX\Entity\User;
         
         $user->setEmail($values['email']);
-        $user->setPassword($values['password']);
         $user->setNickname($values['nickname']);
         $user->setRoleId('User');
         $user->setCreated(new \DateTime('now'));
+
+        if (isset($values['password']) && '' != $values['password']) {
+            $password_service = new Application_Service_Password;
+            $values['password'] = $password_service->hash($values['password']);
+            $user->setPassword($values['password']);
+        }
         
         $this->_entityManager->persist($user);
         $this->_entityManager->flush();
     }
+
 }
