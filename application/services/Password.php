@@ -28,4 +28,10 @@ class Application_Service_Password
         return $this->_hasher->HashPassword($string);
     }
 
+    public function check($password, $storedHash)
+    {
+        return $this->_hasher->CheckPassword($password, $storedHash);
+    }
+
+
 }

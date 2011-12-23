@@ -96,13 +96,12 @@ class OOXX_Form extends Zend_Form
         }
 
         //set errors
-        $errors = $this->getErrors();
-        foreach($errors as $element => $error) {
-            if (!empty($error)) {
-                $this->getElement($element)
-                     ->addDecorator('Wrapper', array('tag' => 'div', 'class' => 'clearfix error'))
-                     ->addDecorator('Label');
-            }
+        $errorMessages = $this->getMessages();
+
+        foreach($errorMessages as $element => $messages) {
+            $this->getElement($element)
+                 ->addDecorator('Wrapper', array('tag' => 'div', 'class' => 'clearfix error'))
+                 ->addDecorator('Label');
         }
 
         $content = '';

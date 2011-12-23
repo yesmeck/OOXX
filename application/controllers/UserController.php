@@ -60,16 +60,26 @@ class UserController extends Zend_Controller_Action
         $form = new Application_Form_User_Login;
         
         $request = $this->getRequest();
+
         if ($request->isPost() && $form->isValid($request->getPost())) {
 
-                if (false === $this->_authService->authenticate($_POST)) {
-                    echo '登录失败';
-                }
+            $result = $this->_authService->authenticate($request->getPost());
 
-                $this->_redirect('/');
-
-                return;
-
+            switch ($result->getCode()) {
+                case Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND:
+                    $form->getElement('email')
+                         ->setErrorMessages($result->getMessages())
+                         ->markAsError();
+                    break;
+                case Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID:
+                    $form->getElement('password')
+                         ->setErrorMessages($result->getMessages())
+                         ->markAsError();
+                    break;
+                case Zend_Auth_Result::SUCCESS:
+                    $this->_redirect('/');
+                    break;
+            }
         }
 
         $this->view->form = $form;

@@ -57,15 +57,11 @@ class Application_Service_Authentication
         $auth    = $this->getAuth();
         $result  = $auth->authenticate($adapter);
 
-        if (!$result->isValid()) {
-            return false;
+        if ($result->isValid()) {
+            $auth->getStorage()->write($adapter->getResultRow());
         }
 
-        $user = $this->userRepository->findOneBy(array('email' => $credentials['email']));
-
-        $auth->getStorage()->write($user);
-        
-        return true;
+        return $result;
     }
 
     public function getAuth()
@@ -112,15 +108,18 @@ class Application_Service_Authentication
     public function getAuthAdapter($values)
     {
         if (null === $this->_authAdapter) {
-            $authAdapter = new Zend_Auth_Adapter_DbTable(
-                Zend_Db_Table_Abstract::getDefaultAdapter(),
-                'user',
+            $authAdapter = new OOXX_Auth_Adapter_Doctrine(
+                new Application_Model_User,
                 'email',
-                'password'
+                'password',
+                array(
+                    new Application_Service_Password,
+                    'check',
+                )
             );
             $this->setAuthAdapter($authAdapter);
-            $this->_authAdapter->setIdentity($values['email']);
-            $this->_authAdapter->setCredential($values['password']);
+            $this->_authAdapter->setIdentity($values['email'])
+                               ->setCredential($values['password']);
         }
         return $this->_authAdapter;
     }
