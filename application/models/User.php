@@ -19,8 +19,8 @@ class Application_Model_User extends OOXX_Model_Abstract
         $user->setCreated(new \DateTime('now'));
 
         if (isset($values['password']) && '' != $values['password']) {
-            $password_service = new Application_Service_Password;
-            $values['password'] = $password_service->hash($values['password']);
+            $passwordService = new Application_Service_Password;
+            $values['password'] = $passwordService->hash($values['password']);
             $user->setPassword($values['password']);
         }
         
