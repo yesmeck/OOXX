@@ -95,6 +95,14 @@ class UserController extends Zend_Controller_Action
     {
         $form = new Application_Form_User_Settings;
 
+        $user = Zend_Registry::get('authUser');
+
+        $form->getElement('email')
+             ->setValue($user->getEmail());
+
+        $form->getElement('nickname')
+             ->setValue($user->getNickname());
+
         $this->view->form = $form;
     }
 

@@ -113,4 +113,26 @@ class OOXX_Form extends Zend_Form
         return $content;
     }
 
+
+    /**
+     * removeElements
+     *
+     * @param array $names
+     * @access public
+     * @return void
+     */
+    public function removeElements(array $names)
+    {
+        foreach ($names as $name) {
+            $this->removeElement($name);
+        }
+    }
+
+    public function clearElementDecorators()
+    {
+        foreach ($this->getElements() as $name => $element) {
+            $element->clearDecorators();
+        }
+    }
+
 }
