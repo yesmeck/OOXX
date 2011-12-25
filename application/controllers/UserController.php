@@ -44,7 +44,7 @@ class UserController extends Zend_Controller_Action
         
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getPost())) {
-                $this->_userModel->save($form->getValues());
+                $this->_userModel->save(new \OOXX\Entity\User, $form->getValues());
                 return $this->_redirect('/');
             } else {
                 $this->view->errorMessages = $form->getMessages();
@@ -93,15 +93,22 @@ class UserController extends Zend_Controller_Action
 
     public function settingsAction()
     {
-        $form = new Application_Form_User_Settings;
+        $form       = new Application_Form_User_Settings;
+        $user       = $this->_userModel->find(Zend_Registry::get('authUser')->getId());
+        $request    = $this->getRequest();
 
-        $user = Zend_Registry::get('authUser');
+        if ($request->isPost() && $form->isValid($request->getPost())) {
+            $this->_userModel->save($user, $form->getValues());
+        }
 
         $form->getElement('email')
              ->setValue($user->getEmail());
 
         $form->getElement('nickname')
              ->setValue($user->getNickname());
+
+        $form->getElement('introduction')
+             ->setValue($user->getIntroduction());
 
         $this->view->form = $form;
     }

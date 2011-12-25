@@ -9,14 +9,17 @@ class Application_Model_User extends OOXX_Model_Abstract
         $this->_repository = $this->_entityManager->getRepository('\OOXX\Entity\User');
     }
     
-    public function save(array $values) {
-        
-        $user = new \OOXX\Entity\User;
+    public function save(OOXX\Entity\User $user, array $values) {
         
         $user->setEmail($values['email']);
         $user->setNickname($values['nickname']);
-        $user->setRoleId('User');
-        $user->setCreated(new \DateTime('now'));
+
+        if (null == $user->getId()) {
+            $user->setRoleId('User');
+            $user->setCreated(new \DateTime('now'));
+        } else {
+            $user->setIntroduction($values['introduction']);
+        }
 
         if (isset($values['password']) && '' != $values['password']) {
             $passwordService = new Application_Service_Password;
