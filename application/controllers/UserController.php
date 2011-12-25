@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends Zend_Controller_Action
+class UserController extends OOXX_Controller_Action_Abstract
 {
 
     protected $_userModel;
