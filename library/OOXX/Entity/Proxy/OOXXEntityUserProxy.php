@@ -69,6 +69,18 @@ class OOXXEntityUserProxy extends \OOXX\Entity\User implements \Doctrine\ORM\Pro
         return parent::getNickname();
     }
 
+    public function setIntroduction($introduction)
+    {
+        $this->_load();
+        return parent::setIntroduction($introduction);
+    }
+
+    public function getIntroduction()
+    {
+        $this->_load();
+        return parent::getIntroduction();
+    }
+
     public function setRoleId($roleId)
     {
         $this->_load();
@@ -123,15 +135,9 @@ class OOXXEntityUserProxy extends \OOXX\Entity\User implements \Doctrine\ORM\Pro
         return parent::addVote($vote);
     }
 
-    public function getVoteToQuestion(\OOXX\Entity\Question $question)
-    {
-        $this->_load();
-        return parent::getVoteToQuestion($question);
-    }
-
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'email', 'password', 'nickname', 'roleId', 'lastLogin', 'created', 'topics', 'questions', 'votes');
+        return array('__isInitialized__', 'id', 'email', 'password', 'nickname', 'introduction', 'roleId', 'lastLogin', 'created', 'topics', 'questions', 'votes');
     }
 }

@@ -33,6 +33,12 @@ class User
      * @var string
      */
     protected $nickname;
+
+    /**
+     * @Column(type="text", nullable=true)
+     * @var string
+     */
+    protected $introduction;
     
     /**
      * @Column(type="string", length=50)
@@ -153,6 +159,32 @@ class User
     {
         return $this->nickname;
     }
+
+    /**
+     * Set Introduction
+     *
+     * @param string $introduction
+     * @access public
+     * @return User
+     */
+    public function setIntroduction($introduction)
+    {
+        $this->introduction = $introduction;
+
+        return $this;
+    }
+
+    /**
+     * Get Introduction
+     *
+     * @access public
+     * @return void
+     */
+    public function getIntroduction()
+    {
+        return $this->introduction;
+    }
+
     
     /**
      * Set roleId
