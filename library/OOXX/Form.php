@@ -39,23 +39,30 @@ class OOXX_Form extends Zend_Form
         return $this;
     }
 
-    public function addElement($element, $name = null, $options = null) {
+    /**
+     * createElement
+     *
+     * @param string $type
+     * @param string $name
+     * @param array $options
+     * @access public
+     * @return Zend_Form_Element
+     */
+    public function createElement($type, $name, $options = null)
+    {
+        $element = parent::createElement($type, $name, $options);
 
-        if ($element instanceof Zend_Form_Element) {
-            $decorators = $element->getDecorators();
-            if (empty ($decorators)) {
-                switch ($element->getType()) {
-                    case 'Zend_Form_Element_Submit':
-                        $element = $this->setSubmitDecorator($element);
-                        break;
-                    default:
-                        $element = $this->setInputDecorator($element);
-                        break;
-                }
-            }
+        //set default decorators
+        switch ($element->getType()) {
+            case 'Zend_Form_Element_Submit':
+                $element = $this->setSubmitDecorator($element);
+                break;
+            default:
+                $element = $this->setInputDecorator($element);
+                break;
         }
 
-        return parent::addElement($element, $name, $options);
+        return $element;
     }
 
     public function setInputDecorator($element)
