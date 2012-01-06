@@ -67,8 +67,8 @@ class OOXX_Form extends Zend_Form
 
     public function setInputDecorator($element)
     {
-        $element->addDecorator('ViewHelper')
-                ->removeDecorator('Errors')
+        $element->clearDecorators()
+                ->addDecorator('ViewHelper')
                 ->addDecorator('SpanErrors', array('class' => 'help-block'))
                 ->addDecorator('Description', array('tag' => 'p', 'class' => 'description'))
                 ->addDecorator('HtmlTag', array(
@@ -85,7 +85,8 @@ class OOXX_Form extends Zend_Form
 
     public function setSubmitDecorator($element)
     {
-        $element->addDecorator('ViewHelper')
+        $element->clearDecorators()
+                ->addDecorator('ViewHelper')
                 ->addDecorator('Wrapper', array('tag' => 'div', 'class' => 'actions'));
         return $element;
     }
