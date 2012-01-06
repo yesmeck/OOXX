@@ -31,21 +31,18 @@ class QuestionController extends OOXX_Controller_Action_Abstract
         if (!$this->checkAcl('new')) {
             throw new OOXX_Acl_Exception('Insufficient rights');
         }
+
+        $topicId = $this->getRequest()->getPost('topicId');
         
-        $form = new Application_Form_Question;
+        $form = new Application_Form_Question($topicId);
         
-        if ($this->getRequest()->isPost() && $form->isValid($_POST)) {
-            
-            $this->_questionModel->save($_POST);
-    
-            $this->_helper->flashMessenger->addMessage('Topic saved.');
-            
-            return $this->_redirect(
-                $this->view->url(array(
-                    'topicId' => $_POST['topicId'],
-                ), 'topicView', true)
-            );
-        }
+        if ($this->getRequest()->isPost() && $form->isValid($this->getRequest()->getPost()))
+            $this->_questionModel->save($form->getValues());
         
+        $this->_redirect(
+            $this->view->url(array(
+                'topicId' => $topicId,
+            ), 'topicView', true)
+        );
     }
 }
