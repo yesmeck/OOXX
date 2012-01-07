@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * User entity
+ *
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 namespace OOXX\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;

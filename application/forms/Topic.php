@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * New topic form
+ *
+ * @uses OOXX_Form
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 class Application_Form_Topic extends OOXX_Form
 {
     public function init()

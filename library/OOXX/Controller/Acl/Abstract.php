@@ -1,12 +1,41 @@
 <?php
 
+/**
+ * OOXX_Controller_Acl_Abstract
+ *
+ * @uses Zend_Controller_Action
+ * @implements OOXX_Controller_Acl_Interface
+ * @implements Zend_Acl_Resource_Interface
+ * @abstract
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
 abstract class OOXX_Controller_Acl_Abstract extends Zend_Controller_Action
     implements OOXX_Controller_Acl_Interface, Zend_Acl_Resource_Interface
 {
+    /**
+     * Acl
+     *
+     * @var Application_Model_Acl
+     * @access protected
+     */
     protected $_acl;
     
+    /**
+     * Identity
+     *
+     * @var mixed
+     * @access protected
+     */
     protected $_identity;
 
+    /**
+     * setIdentity
+     *
+     * @param mixed $identity
+     * @access public
+     * @return OOXX_Controller_Acl_Abstract
+     */
     public function setIdentity($identity)
     {
         if (is_object($identity)) {
@@ -31,6 +60,12 @@ abstract class OOXX_Controller_Acl_Abstract extends Zend_Controller_Action
         return $this;
     }
     
+    /**
+     * Get identity
+     *
+     * @access public
+     * @return mixed
+     */
     public function getIdentity()
     {
         if (null === $this->_identity) {
@@ -43,6 +78,12 @@ abstract class OOXX_Controller_Acl_Abstract extends Zend_Controller_Action
         return $this->_identity;
     }
     
+    /**
+     * Get Acl
+     *
+     * @access public
+     * @return Application_Model_Acl
+     */
     public function getAcl() {
         if (null === $this->_acl) {
             $this->setAcl(new Application_Model_Acl);
@@ -50,6 +91,13 @@ abstract class OOXX_Controller_Acl_Abstract extends Zend_Controller_Action
         return $this->_acl;
     }
     
+    /**
+     * Check Acl
+     *
+     * @param string $action
+     * @access public
+     * @return bool
+     */
     public function checkAcl($action)
     {
         return $this->getAcl()->isAllowed(
@@ -59,3 +107,4 @@ abstract class OOXX_Controller_Acl_Abstract extends Zend_Controller_Action
        );
     }
 }
+

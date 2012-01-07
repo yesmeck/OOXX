@@ -226,3 +226,4 @@ class OOXX_Auth_Adapter_Doctrine implements Zend_Auth_Adapter_Interface
         return $this->_resultRow;
     }
 }
+

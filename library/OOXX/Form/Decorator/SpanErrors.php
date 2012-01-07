@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * OOXX_Form_Decorator_SpanErrors
+ *
+ * @uses Zend_Form_Decorator_Abstract
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 class OOXX_Form_Decorator_SpanErrors extends Zend_Form_Decorator_Abstract
 {
 

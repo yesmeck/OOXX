@@ -1,14 +1,21 @@
 <?php
 
 /**
- * Application_Form_User_Base
+ * User base form
  *
  * @uses OOXX_Form
  * @copyright 2011 Meck
  * @author Meck <yesmeck@gmail.com>
  */
+
 class Application_Form_User_Base extends OOXX_Form
 {
+    /**
+     * Init
+     *
+     * @access public
+     * @return void
+     */
     public function init()
     {
         $this->setMethod('post');
@@ -61,3 +68,4 @@ class Application_Form_User_Base extends OOXX_Form
         ));
     }
 }
+

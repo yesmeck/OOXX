@@ -1,22 +1,62 @@
 <?php
 
+/**
+ * Topic controller
+ *
+ * @uses OOXX_Controller_Action_Abstract
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 class TopicController extends OOXX_Controller_Action_Abstract
 {
 
+    /**
+     * Topic model
+     *
+     * @var Application_Model_Topic
+     * @access protected
+     */
     protected $_topicModel;
+
+    /**
+     * Question model
+     *
+     * @var Application_Model_Question
+     * @access protected
+     */
     protected $_questionModel;
 
+    /**
+     * Init
+     *
+     * @access public
+     * @return void
+     */
     public function init()
     {
         $this->_topicModel = new Application_Model_Topic;
         $this->_questionModel = new Application_Model_Question;
     }
     
+    /**
+     * getResourceId
+     *
+     * @access public
+     * @return string
+     */
     public function getResourceId()
     {
         return 'Topic';
     }
     
+    /**
+     * setAcl
+     *
+     * @param OOXX_Acl_Interface $acl
+     * @access public
+     * @return TopicController
+     */
     public function setAcl(OOXX_Acl_Interface $acl)
     {
         if (!$acl->has($this->getResourceId())) {
@@ -27,6 +67,12 @@ class TopicController extends OOXX_Controller_Action_Abstract
         return $this;
     }
 
+    /**
+     * Create new topic
+     *
+     * @access public
+     * @return void
+     */
     public function newAction()
     {
         
@@ -48,6 +94,12 @@ class TopicController extends OOXX_Controller_Action_Abstract
         $this->view->form = $form;
     }
 
+    /**
+     * Topic view
+     *
+     * @access public
+     * @return void
+     */
     public function viewAction()
     {
         $topicId = $this->_getParam('topicId');
@@ -70,6 +122,4 @@ class TopicController extends OOXX_Controller_Action_Abstract
     }
 
 }
-
-
 

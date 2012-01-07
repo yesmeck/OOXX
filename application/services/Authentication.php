@@ -1,42 +1,59 @@
 <?php
 
+/**
+ * Application_Service_Authentication
+ *
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 class Application_Service_Authentication 
 {
     /**
+     * _authAdapter
+     *
      * @var Zend_Auth_Adapter_DbTable
+     * @access protected
      */
     protected $_authAdapter;
 
     /**
+     * _auth
+     *
      * @var Zend_Auth
+     * @access protected
      */
     protected $_auth;
     
     /**
+     * doctrine
+     *
      * @var Bisna\Application\Container\DoctrineContainer
-     *
-     *
+     * @access protected
      */
     protected $doctrine = null;
 
     /**
+     * entityManager
+     *
      * @var Doctrine\ORM\EntityManager
-     *
-     *
+     * @access protected
      */
     protected $entityManager = null;
 
     /**
+     * userRepository
+     *
      * @var OOXX\Entity\Repository\topicRepository
-     *
-     *
+     * @access protected
      */
     protected $userRepository = null;
 
     /**
-     * Construct 
+     * __construct
      * 
-     * @param null|Storefront_Model_User $userModel 
+     * @access public
+     * @return void
      */
     public function __construct()
     {
@@ -64,6 +81,12 @@ class Application_Service_Authentication
         return $result;
     }
 
+    /**
+     * getAuth
+     *
+     * @access public
+     * @return Zend_Auth
+     */
     public function getAuth()
     {
         if (null === $this->_auth) {
@@ -72,6 +95,12 @@ class Application_Service_Authentication
         return $this->_auth;
     }
 
+    /**
+     * getIdentity
+     *
+     * @access public
+     * @return mix
+     */
     public function getIdentity()
     {
         $auth = $this->getAuth();
@@ -83,6 +112,9 @@ class Application_Service_Authentication
     
     /**
      * Clear any authentication data
+     *
+     * @access public
+     * @return void
      */
     public function clear()
     {
@@ -93,6 +125,8 @@ class Application_Service_Authentication
      * Set the auth adpater.
      *
      * @param Zend_Auth_Adapter_Interface $adapter
+     * @access public
+     * @return void
      */
     public function setAuthAdapter(Zend_Auth_Adapter_Interface $adapter)
     {
@@ -124,3 +158,4 @@ class Application_Service_Authentication
         return $this->_authAdapter;
     }
 }
+

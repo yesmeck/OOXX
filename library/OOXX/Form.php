@@ -1,7 +1,20 @@
 <?php
 
+/**
+ * OOXX_Form
+ *
+ * @uses Zend_Form
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
 class OOXX_Form extends Zend_Form
 {
+    /**
+     * __construct
+     *
+     * @access public
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
@@ -55,17 +68,24 @@ class OOXX_Form extends Zend_Form
         //set default decorators
         switch ($element->getType()) {
             case 'Zend_Form_Element_Submit':
-                $element = $this->setSubmitDecorator($element);
+                $element = $this->_setSubmitDecorator($element);
                 break;
             default:
-                $element = $this->setInputDecorator($element);
+                $element = $this->_setInputDecorator($element);
                 break;
         }
 
         return $element;
     }
 
-    public function setInputDecorator($element)
+    /**
+     * setInputDecorator
+     *
+     * @param Zend_Form_Element $element
+     * @access private
+     * @return Zend_Form_Element
+     */
+    private function _setInputDecorator($element)
     {
         $element->clearDecorators()
                 ->addDecorator('ViewHelper')
@@ -83,7 +103,14 @@ class OOXX_Form extends Zend_Form
         return $element;
     }
 
-    public function setSubmitDecorator($element)
+    /**
+     * setSubmitDecorator
+     *
+     * @param Zend_Form_Element $element
+     * @access private
+     * @return Zend_Form_Element
+     */
+    private function _setSubmitDecorator($element)
     {
         $element->clearDecorators()
                 ->addDecorator('ViewHelper')
@@ -136,6 +163,12 @@ class OOXX_Form extends Zend_Form
         }
     }
 
+    /**
+     * clearElementDecorators
+     *
+     * @access public
+     * @return void
+     */
     public function clearElementDecorators()
     {
         foreach ($this->getElements() as $name => $element) {
@@ -144,3 +177,4 @@ class OOXX_Form extends Zend_Form
     }
 
 }
+

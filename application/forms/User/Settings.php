@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * User setting form
+ *
+ * @uses Application_Form_User_Base
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 class Application_Form_User_Settings extends Application_Form_User_Base
 {
     public function init()
@@ -14,3 +22,4 @@ class Application_Form_User_Settings extends Application_Form_User_Base
 
     }
 }
+

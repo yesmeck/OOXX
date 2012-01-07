@@ -6,8 +6,15 @@
  * @copyright 2011 Meck
  * @author Meck <yesmeck@gmail.com>
  */
+
 class Application_Service_Password
 {
+    /**
+     * Hasher
+     *
+     * @var OOXX_PasswordHash
+     * @access protected
+     */
     protected $_hasher;
 
     public function __construct()
@@ -17,7 +24,7 @@ class Application_Service_Password
 
 
     /**
-     * hash
+     * Hash the given string
      *
      * @param string $string
      * @access public
@@ -28,10 +35,18 @@ class Application_Service_Password
         return $this->_hasher->HashPassword($string);
     }
 
+    /**
+     * Compare the twoo string
+     *
+     * @param mixed $password
+     * @param mixed $storedHash
+     * @access public
+     * @return void
+     */
     public function check($password, $storedHash)
     {
         return $this->_hasher->CheckPassword($password, $storedHash);
     }
 
-
 }
+

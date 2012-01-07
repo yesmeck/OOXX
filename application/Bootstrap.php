@@ -1,8 +1,22 @@
 <?php
 
+/**
+ * Bootstrap
+ *
+ * @uses Zend_Application_Bootstrap_Bootstrap
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
 
+    /**
+     * Init autoloader
+     *
+     * @access public
+     * @return void
+     */
     public function _initAutoloader()
     {
         require_once 'Doctrine/Common/ClassLoader.php';
@@ -16,6 +30,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $autoloader->pushAutoloader(array($appAutoloader, 'loadClass'), 'OOXX');
     }
     
+    /**
+     * Init routes
+     *
+     * @access public
+     * @return void
+     */
     public function _initRoutes()
     {
         $this->bootstrap('frontController');
@@ -60,6 +80,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     }
 
 
+    /**
+     * Init auth
+     *
+     * @access protected
+     * @return void
+     */
     protected function _initAuth()
     {
         $this->bootstrap('session');
@@ -71,6 +97,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         }
     }
 
+    /**
+     * Init validator
+     *
+     * @access public
+     * @return void
+     */
     public function _initValidator()
     {
         $translator = new Zend_Translate(
@@ -83,7 +115,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
         Zend_Validate_Abstract::setDefaultTranslator($translator);
     }
-    
+
+    /**
+     * Init view settings
+     *
+     * @access public
+     * @return void
+     */
     public function _initViewSettings()
     {
         $this->bootstrap('view');

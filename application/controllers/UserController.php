@@ -1,16 +1,38 @@
 <?php
 
+/**
+ * User controller
+ *
+ * @uses OOXX_Controller_Action_Abstract
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 class UserController extends OOXX_Controller_Action_Abstract
 {
 
+    /**
+     * User model
+     *
+     * @var Application_Model_User
+     * @access protected
+     */
     protected $_userModel;
     
     /**
+     * Authenticate service
      *
-     * @var Application_Service_Authentication 
+     * @var Application_Service_Authentication
+     * @access protected
      */
     protected $_authService;
 
+    /**
+     * Init
+     *
+     * @access public
+     * @return void
+     */
     public function init()
     {
         $this->_userModel = new Application_Model_User;
@@ -18,11 +40,24 @@ class UserController extends OOXX_Controller_Action_Abstract
     }
     
     
+    /**
+     * getResourceId
+     *
+     * @access public
+     * @return string
+     */
     public function getResourceId()
     {
         return 'User';
     }
     
+    /**
+     * setAcl
+     *
+     * @param OOXX_Acl_Interface $acl
+     * @access public
+     * @return UserController
+     */
     public function setAcl(OOXX_Acl_Interface $acl)
     {
         if (!$acl->has($this->getResourceId())) {
@@ -33,11 +68,12 @@ class UserController extends OOXX_Controller_Action_Abstract
         return $this;
     }
 
-    public function indexAction()
-    {
-        // action body
-    }
-
+    /**
+     * Register a new user
+     *
+     * @access public
+     * @return void
+     */
     public function registerAction()
     {
         $form = new Application_Form_User_Register;
@@ -54,6 +90,12 @@ class UserController extends OOXX_Controller_Action_Abstract
         $this->view->registerForm = $form;
     }
 
+    /**
+     * User login
+     *
+     * @access public
+     * @return void
+     */
     public function loginAction()
     {
         
@@ -85,12 +127,24 @@ class UserController extends OOXX_Controller_Action_Abstract
         $this->view->form = $form;
     }
 
+    /**
+     * Bye bye~
+     *
+     * @access public
+     * @return void
+     */
     public function logoutAction()
     {
         $this->_authService->clear();
         return $this->_redirect('/');
     }
 
+    /**
+     * User setting
+     *
+     * @access public
+     * @return void
+     */
     public function settingsAction()
     {
         $form       = new Application_Form_User_Settings;
@@ -115,12 +169,4 @@ class UserController extends OOXX_Controller_Action_Abstract
 
 
 }
-
-
-
-
-
-
-
-
 

@@ -1,18 +1,47 @@
 <?php
 
+/**
+ * Application_Model_Vote
+ *
+ * @uses OOXX_Model_Abstract
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 use OOXX\Entity\Question;
 use OOXX\Entity\Vote;
 use OOXX\Entity\User;
 
 class Application_Model_Vote extends OOXX_Model_Abstract
 {
+    /**
+     * Votew repository
+     *
+     * @var \OOXX\Entity\Repository\VoteRepository
+     * @access protected
+     */
     protected $_repository;
     
+    /**
+     * Init
+     *
+     * @access public
+     * @return void
+     */
     public function init()
     {
         $this->_repository = $this->_entityManager->getRepository('\OOXX\Entity\Vote');
     }
     
+    /**
+     * Add a vote
+     *
+     * @param Question $question
+     * @param User $user
+     * @param string $type
+     * @access public
+     * @return void
+     */
     public function add(Question $question, User $user, $type)
     {
         
@@ -29,12 +58,17 @@ class Application_Model_Vote extends OOXX_Model_Abstract
              ->setUser($user);
         
         $this->_entityManager->persist($vote);
-        
 
-        
         $this->_entityManager->flush();
     }
     
+    /**
+     * Delete a vote
+     *
+     * @param Vote $vote
+     * @access public
+     * @return void
+     */
     public function delete(Vote $vote)
     {
         $this->_entityManager->remove($vote);
@@ -57,8 +91,13 @@ class Application_Model_Vote extends OOXX_Model_Abstract
     }
     
     /**
-     * @param \OOXX\Entity\Question $question
-     * @return null|\OOXX\Entity\Vote
+     * Get vote to question by user
+     *
+     * @param Question $question
+     * @param User $user
+     * @param bool $type
+     * @access public
+     * @return void
      */
     public function getVoteToQuestionByUser(Question $question, User $user, $type = null)
     {
@@ -74,3 +113,4 @@ class Application_Model_Vote extends OOXX_Model_Abstract
         return $this->findOneBy($criteria);
     }
 }
+

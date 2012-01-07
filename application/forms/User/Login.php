@@ -1,8 +1,22 @@
 <?php
 
+/**
+ * User login form
+ *
+ * @uses Application_Form_User_Base
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 class Application_Form_User_Login extends Application_Form_User_Base
 {
 
+    /**
+     * Init
+     *
+     * @access public
+     * @return void
+     */
     public function init()
     {
         parent::init();

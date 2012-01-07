@@ -1,10 +1,37 @@
 <?php
 
+/**
+ * Answer controller
+ *
+ * @uses OOXX_Controller_Action_Abstract
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 class AnswerController extends OOXX_Controller_Action_Abstract
 {
+    /**
+     * Question model
+     *
+     * @var Application_Model_Question
+     * @access protected
+     */
     protected $_questionModel;
+
+    /**
+     * Answer model
+     *
+     * @var Application_Model_Answer
+     * @access protected
+     */
     protected $_answerModel;
 
+    /**
+     * Init
+     *
+     * @access public
+     * @return void
+     */
     public function init()
     {
         $this->_questionModel = new Application_Model_Question;
@@ -12,11 +39,24 @@ class AnswerController extends OOXX_Controller_Action_Abstract
     }
 
 
+    /**
+     * getResourceId
+     *
+     * @access public
+     * @return String
+     */
     public function getResourceId()
     {
         return 'Answer';
     }
     
+    /**
+     * setAcl
+     *
+     * @param OOXX_Acl_Interface $acl
+     * @access public
+     * @return AnswerController
+     */
     public function setAcl(OOXX_Acl_Interface $acl)
     {
         if (!$acl->has($this->getResourceId())) {
@@ -27,6 +67,12 @@ class AnswerController extends OOXX_Controller_Action_Abstract
         return $this;
     }
     
+    /**
+     * Create new answer
+     *
+     * @access public
+     * @return void
+     */
     public function newAction()
     {
         $questionId = $this->getRequest()->getParam('questionId');
@@ -58,3 +104,4 @@ class AnswerController extends OOXX_Controller_Action_Abstract
         $this->view->question = $question;
     }
 }
+

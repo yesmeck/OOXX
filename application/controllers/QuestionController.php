@@ -1,21 +1,54 @@
 <?php
 
+/**
+ * Question controller
+ *
+ * @uses OOXX_Controller_Action_Abstract
+ * @copyright 2011 Meck
+ * @author Meck <yesmeck@gmail.com>
+ */
+
 class QuestionController extends OOXX_Controller_Action_Abstract
 {
     
+    /**
+     * Question model
+     *
+     * @var Application_Model_Question
+     * @access protected
+     */
     protected $_questionModel;
     
+    /**
+     * Init
+     *
+     * @access public
+     * @return void
+     */
     public function init()
     {
         $this->_questionModel = new Application_Model_Question;
     }
 
 
+    /**
+     * getResourceId
+     *
+     * @access public
+     * @return string
+     */
     public function getResourceId()
     {
         return 'Question';
     }
     
+    /**
+     * setAcl
+     *
+     * @param OOXX_Acl_Interface $acl
+     * @access public
+     * @return QuestionController
+     */
     public function setAcl(OOXX_Acl_Interface $acl)
     {
         if (!$acl->has($this->getResourceId())) {
@@ -26,6 +59,12 @@ class QuestionController extends OOXX_Controller_Action_Abstract
         return $this;
     }
     
+    /**
+     * Create new question
+     *
+     * @access public
+     * @return void
+     */
     public function newAction()
     {
         if (!$this->checkAcl('new')) {
@@ -46,3 +85,4 @@ class QuestionController extends OOXX_Controller_Action_Abstract
         );
     }
 }
+
